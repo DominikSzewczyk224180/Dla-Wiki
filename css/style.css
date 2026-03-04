@@ -249,34 +249,9 @@ body {
 }
 
 .hero-name {
-    position: relative;
     cursor: default;
-    transition: all 0.3s ease;
-}
-
-.hero-name::after {
-    content: 'mojego Dziubaska';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    opacity: 0;
     transition: opacity 0.3s ease;
-    font-family: var(--font-script);
-    background: linear-gradient(135deg, var(--pink-600), var(--rose-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    pointer-events: none;
-}
-
-.hero-name:hover {
-    opacity: 0;
-}
-
-.hero-name:hover::after {
-    opacity: 1;
+    display: inline-block;
 }
 
 .hero-title__line3 {

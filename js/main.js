@@ -7,7 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initPetals();
     initProgress();
     initScrollAnimations();
+    initNameHover();
 });
+
+/* --- Name Hover Swap --- */
+function initNameHover() {
+    const nameEl = document.getElementById('heroName');
+    if (!nameEl) return;
+
+    const originalText = 'Wiki';
+    const hoverText = 'mojego Dziubaska';
+
+    nameEl.addEventListener('mouseenter', () => {
+        nameEl.textContent = hoverText;
+    });
+
+    nameEl.addEventListener('mouseleave', () => {
+        nameEl.textContent = originalText;
+    });
+
+    // Touch support for mobile
+    nameEl.addEventListener('touchstart', () => {
+        nameEl.textContent = hoverText;
+    });
+
+    nameEl.addEventListener('touchend', () => {
+        setTimeout(() => { nameEl.textContent = originalText; }, 1500);
+    });
+}
 
 /* --- Floating Petals --- */
 function initPetals() {
