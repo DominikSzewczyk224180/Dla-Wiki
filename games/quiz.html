@@ -16,23 +16,23 @@
     <div class="quiz-screen active" id="screenDifficulty">
         <div class="quiz-box quiz-box--start">
             <a href="../index.html" class="quiz-back">← Powrót</a>
-            <div class="quiz-start-icon">✦</div>
+            <div class="quiz-start-icon"><svg viewBox="0 0 60 60" width="64" height="64"><circle cx="25" cy="25" r="14" fill="none" stroke="var(--pink-500)" stroke-width="3"/><line x1="35" y1="35" x2="50" y2="50" stroke="var(--pink-500)" stroke-width="3" stroke-linecap="round"/><circle cx="25" cy="25" r="6" fill="none" stroke="var(--pink-300)" stroke-width="2"/></svg></div>
             <h1 class="quiz-start-title">Quiz Wiedzy Ogólnej</h1>
             <p class="quiz-start-desc">20 losowych pytań z puli 100. Wybierz poziom trudności — im trudniej, tym mniej czasu na odpowiedź!</p>
 
             <div class="difficulty-cards">
                 <button class="diff-card" data-diff="easy" onclick="startQuiz('easy')">
-                    <span class="diff-card__emoji">❋</span>
+                    <span class="diff-card__emoji"><svg viewBox="0 0 28 28" width="28" height="28"><circle cx="14" cy="14" r="5" fill="var(--pink-400)"/><circle cx="14" cy="5" r="3.5" fill="none" stroke="var(--pink-400)" stroke-width="1.5"/><circle cx="22" cy="10" r="3.5" fill="none" stroke="var(--pink-400)" stroke-width="1.5"/><circle cx="20" cy="20" r="3.5" fill="none" stroke="var(--pink-400)" stroke-width="1.5"/><circle cx="8" cy="20" r="3.5" fill="none" stroke="var(--pink-400)" stroke-width="1.5"/><circle cx="6" cy="10" r="3.5" fill="none" stroke="var(--pink-400)" stroke-width="1.5"/></svg></span>
                     <span class="diff-card__name">Łatwy</span>
                     <span class="diff-card__time">30s na pytanie · 60% do zaliczenia</span>
                 </button>
                 <button class="diff-card" data-diff="medium" onclick="startQuiz('medium')">
-                    <span class="diff-card__emoji">✦</span>
+                    <span class="diff-card__emoji"><svg viewBox="0 0 28 28" width="28" height="28"><polygon points="14,2 17.5,10.5 27,10.5 19.5,16 22,25 14,19.5 6,25 8.5,16 1,10.5 10.5,10.5" fill="none" stroke="var(--pink-500)" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
                     <span class="diff-card__name">Średni</span>
                     <span class="diff-card__time">15s na pytanie · 80% do zaliczenia</span>
                 </button>
                 <button class="diff-card" data-diff="hard" onclick="startQuiz('hard')">
-                    <span class="diff-card__emoji">★</span>
+                    <span class="diff-card__emoji"><svg viewBox="0 0 28 28" width="28" height="28"><polygon points="14,1 19,10 28,14 19,18 14,27 9,18 0,14 9,10" fill="none" stroke="var(--pink-600)" stroke-width="1.8" stroke-linejoin="round"/><polygon points="14,7 16.5,12 22,14 16.5,16 14,21 11.5,16 6,14 11.5,12" fill="var(--pink-400)" stroke="none"/></svg></span>
                     <span class="diff-card__name">Trudny</span>
                     <span class="diff-card__time">8s na pytanie · 90% do zaliczenia</span>
                 </button>
@@ -128,7 +128,7 @@
     <script>
         // Mini petal effect
         const container = document.getElementById('petalsContainer');
-        const petalEmojis = ['❋','✾','❁','✿','❀'];
+        const petalEmojis = ['🌸','🌷','💮','🪻','🌺'];
         setInterval(() => {
             const p = document.createElement('span');
             p.classList.add('petal');

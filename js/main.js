@@ -39,7 +39,7 @@ function initNameHover() {
 /* --- Floating Petals --- */
 function initPetals() {
     const container = document.getElementById('petalsContainer');
-    const petalEmojis = ['❋', '✾', '❁', '✿', '❀', '♡', '·'];
+    const petalEmojis = ['🌸', '🌷', '💮', '🪻', '🌺', '✿', '❀'];
     const PETAL_COUNT = 20;
 
     for (let i = 0; i < PETAL_COUNT; i++) {
