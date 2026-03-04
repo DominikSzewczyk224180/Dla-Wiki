@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Wiedzy Ogólnej 🧠</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="quiz-body">
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- DIFFICULTY SELECT SCREEN -->
+    <div class="quiz-screen active" id="screenDifficulty">
+        <div class="quiz-box quiz-box--start">
+            <a href="../index.html" class="quiz-back">← Powrót</a>
+            <div class="quiz-start-icon">🧠</div>
+            <h1 class="quiz-start-title">Quiz Wiedzy Ogólnej</h1>
+            <p class="quiz-start-desc">20 losowych pytań z puli 100. Wybierz poziom trudności — im trudniej, tym mniej czasu na odpowiedź!</p>
+
+            <div class="difficulty-cards">
+                <button class="diff-card" data-diff="easy" onclick="startQuiz('easy')">
+                    <span class="diff-card__emoji">🌸</span>
+                    <span class="diff-card__name">Łatwy</span>
+                    <span class="diff-card__time">30 sekund na pytanie</span>
+                </button>
+                <button class="diff-card" data-diff="medium" onclick="startQuiz('medium')">
+                    <span class="diff-card__emoji">🔥</span>
+                    <span class="diff-card__name">Średni</span>
+                    <span class="diff-card__time">15 sekund na pytanie</span>
+                </button>
+                <button class="diff-card" data-diff="hard" onclick="startQuiz('hard')">
+                    <span class="diff-card__emoji">💀</span>
+                    <span class="diff-card__name">Trudny</span>
+                    <span class="diff-card__time">8 sekund na pytanie</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ GAME SCREEN -->
+    <div class="quiz-screen" id="screenQuiz">
+        <div class="quiz-box">
+            <div class="quiz-hud">
+                <div class="quiz-hud__left">
+                    <span class="quiz-hud__label">Pytanie</span>
+                    <span class="quiz-hud__value" id="questionCounter">1 / 20</span>
+                </div>
+                <div class="quiz-hud__center">
+                    <div class="timer-ring" id="timerRing">
+                        <svg viewBox="0 0 80 80">
+                            <circle class="timer-ring__bg" cx="40" cy="40" r="35"/>
+                            <circle class="timer-ring__fill" cx="40" cy="40" r="35" id="timerCircle"/>
+                        </svg>
+                        <span class="timer-ring__text" id="timerText">30</span>
+                    </div>
+                </div>
+                <div class="quiz-hud__right">
+                    <span class="quiz-hud__label">Wynik</span>
+                    <span class="quiz-hud__value" id="scoreDisplay">0</span>
+                </div>
+            </div>
+
+            <div class="quiz-progress-mini">
+                <div class="quiz-progress-mini__fill" id="quizProgressFill"></div>
+            </div>
+
+            <div class="quiz-question-area">
+                <div class="quiz-category" id="questionCategory">Geografia</div>
+                <h2 class="quiz-question" id="questionText">Pytanie...</h2>
+            </div>
+
+            <div class="quiz-answers" id="answersContainer">
+                <!-- answers injected by JS -->
+            </div>
+
+            <div class="quiz-fun-fact" id="funFact"></div>
+        </div>
+    </div>
+
+    <!-- RESULTS SCREEN -->
+    <div class="quiz-screen" id="screenResults">
+        <div class="quiz-box quiz-box--results">
+            <div class="results-icon" id="resultsIcon">🎉</div>
+            <h2 class="results-title" id="resultsTitle">Świetnie!</h2>
+            <p class="results-subtitle" id="resultsSubtitle">Oto Twój wynik:</p>
+
+            <div class="results-score-ring">
+                <svg viewBox="0 0 120 120">
+                    <circle class="results-ring__bg" cx="60" cy="60" r="52"/>
+                    <circle class="results-ring__fill" cx="60" cy="60" r="52" id="resultsRingFill"/>
+                </svg>
+                <div class="results-ring__text">
+                    <span class="results-ring__number" id="resultsNumber">0</span>
+                    <span class="results-ring__total">/ 20</span>
+                </div>
+            </div>
+
+            <div class="results-stats">
+                <div class="results-stat">
+                    <span class="results-stat__icon">✅</span>
+                    <span class="results-stat__value" id="statCorrect">0</span>
+                    <span class="results-stat__label">Poprawne</span>
+                </div>
+                <div class="results-stat">
+                    <span class="results-stat__icon">❌</span>
+                    <span class="results-stat__value" id="statWrong">0</span>
+                    <span class="results-stat__label">Błędne</span>
+                </div>
+                <div class="results-stat">
+                    <span class="results-stat__icon">⏱️</span>
+                    <span class="results-stat__value" id="statTime">0s</span>
+                    <span class="results-stat__label">Czas</span>
+                </div>
+            </div>
+
+            <div class="results-buttons">
+                <button class="btn-primary" onclick="restartQuiz()">Zagraj ponownie</button>
+                <a href="../index.html" class="btn-secondary" id="backToMain">Wróć do menu</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/quiz-questions.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script>
+        // Mini petal effect
+        const container = document.getElementById('petalsContainer');
+        const petalEmojis = ['🌸','🩷','💗','🪷','✿'];
+        setInterval(() => {
+            const p = document.createElement('span');
+            p.classList.add('petal');
+            p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+            p.style.left = Math.random()*100+'%';
+            p.style.animationDuration = (8+Math.random()*10)+'s';
+            p.style.fontSize = (0.7+Math.random()*0.8)+'rem';
+            container.appendChild(p);
+            setTimeout(()=>p.remove(), 18000);
+        }, 3000);
+    </script>
+</body>
+</html>
