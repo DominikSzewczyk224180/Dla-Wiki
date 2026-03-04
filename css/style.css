@@ -651,13 +651,14 @@ body {
     box-shadow: 0 2px 8px rgba(236, 64, 122, 0.3);
 }
 
+
 /* =============================================
-   PRIZE SECTION
+   PRIZE SECTION - SCRATCH CARDS
    ============================================= */
 .prize-section {
     display: none;
     position: relative;
-    max-width: 600px;
+    max-width: 900px;
     margin: 4rem auto 0;
     text-align: center;
     padding: 3rem 2rem;
@@ -668,10 +669,7 @@ body {
     overflow: hidden;
     animation: prizeAppear 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.prize-section.visible {
-    display: block;
-}
+.prize-section.visible { display: block; }
 
 @keyframes prizeAppear {
     0% { opacity: 0; transform: scale(0.8) translateY(30px); }
@@ -684,7 +682,6 @@ body {
     margin-bottom: 1rem;
     animation: starsGlow 2s ease-in-out infinite alternate;
 }
-
 @keyframes starsGlow {
     0% { filter: brightness(1); }
     100% { filter: brightness(1.3); }
@@ -697,182 +694,131 @@ body {
     color: var(--pink-600);
     margin-bottom: 0.5rem;
 }
-
 .prize-text {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--text-medium);
     margin-bottom: 2rem;
-    line-height: 1.5;
 }
 
-/* --- Prize Cards --- */
-.prize-card {
+.prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
     margin-bottom: 1.5rem;
 }
 
-.prize-card__label {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--pink-600);
-    margin-bottom: 0.6rem;
-}
-
-/* --- Scratch Area --- */
-.scratch-area {
-    position: relative;
-    min-height: 80px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.scratch-cover {
-    position: relative;
-    background: linear-gradient(135deg, var(--pink-400), var(--pink-500), var(--rose-gold));
-    padding: 1.8rem 1.5rem;
-    border-radius: var(--radius-md);
-    z-index: 2;
-    transition: all 0.5s ease;
-    overflow: hidden;
-}
-
-.scratch-cover::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(255,255,255,0.05) 10px,
-        rgba(255,255,255,0.05) 20px
-    );
-    animation: scratchShimmer 3s linear infinite;
-}
-
-@keyframes scratchShimmer {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(28px, 28px); }
-}
-
-.scratch-cover:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(236, 64, 122, 0.3);
-}
-
-.scratch-text {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    display: block;
-}
-
-.scratch-sparkles {
-    position: relative;
-    z-index: 1;
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-    animation: sparkle 1.5s ease-in-out infinite;
-}
-
-@keyframes sparkle {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.1); }
-}
-
-/* Scratching animation */
-.scratch-cover.scratching {
-    animation: scratchOff 0.8s ease-out forwards;
-}
-
-@keyframes scratchOff {
-    0% {
-        clip-path: inset(0 0 0 0);
-        opacity: 1;
-    }
-    30% {
-        clip-path: inset(0 0 0 30%);
-    }
-    60% {
-        clip-path: inset(10% 0 10% 60%);
-        opacity: 0.7;
-    }
-    100% {
-        clip-path: inset(50% 50% 50% 50%);
-        opacity: 0;
-        pointer-events: none;
-    }
-}
-
-/* --- Revealed Prize --- */
-.scratch-reveal {
-    padding: 1.5rem;
+.prize-card {
     background: var(--white);
-    border: 2px solid var(--pink-300);
     border-radius: var(--radius-md);
-    animation: revealBounce 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+    padding: 1.2rem;
+    border: 2px solid var(--pink-200);
+    box-shadow: 0 4px 16px rgba(236, 64, 122, 0.08);
 }
-
-.scratch-area:not(.revealed) .scratch-reveal {
-    display: none;
-}
-
-@keyframes revealBounce {
-    0% { opacity: 0; transform: scale(0.8); }
-    60% { transform: scale(1.03); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-.prize-img {
-    width: 160px;
-    height: auto;
-    max-height: 140px;
-    object-fit: contain;
-    margin: 0 auto 1rem;
-    display: block;
-    border-radius: 10px;
-}
-
-.prize-name {
+.prize-card__label {
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
-.prize-delivery {
+.scratch-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    margin: 0 auto 0.8rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--pink-300);
+    cursor: crosshair;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.scratch-reveal {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #fff9c4, #fff176, #ffe082);
     display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    text-align: left;
-    background: var(--pink-100);
-    padding: 0.8rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+.reveal-emoji { font-size: 2.5rem; }
+.reveal-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+}
+.scratch-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+.prize-qr-btn {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+    padding: 0.55em 1.4em;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(236, 64, 122, 0.3);
+    transition: all 0.3s ease;
+    animation: prizeAppear 0.5s ease-out;
+}
+.prize-qr-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
+}
+
+.prize-qr-popup {
+    margin-top: 0.8rem;
+    padding: 0.8rem;
+    background: var(--white);
     border-radius: var(--radius-sm);
-    font-size: 0.8rem;
-    color: var(--text-medium);
-    line-height: 1.5;
+    border: 2px solid var(--pink-300);
+    animation: prizeAppear 0.4s ease-out;
 }
-
-.prize-delivery__icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
+.prize-qr-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 0.4rem;
+    border-radius: 8px;
 }
-
+.prize-qr-hint {
+    font-family: var(--font-script);
+    font-size: 0.85rem;
+    color: var(--rose-gold);
+}
 .prize-hint {
     font-family: var(--font-script);
     font-size: 1.1rem;
     color: var(--rose-gold);
     margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .prizes-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto 1.5rem;
+    }
+    .prize-section {
+        margin: 3rem 1rem 0;
+        padding: 2rem 1rem;
+    }
 }
 
 /* =============================================

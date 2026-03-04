@@ -159,6 +159,9 @@ function showPrize() {
             prizeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
 
+        // Init scratch cards
+        setTimeout(initScratchCards, 600);
+
         // Trigger confetti
         createConfetti();
     }
@@ -248,6 +251,156 @@ function resetProgress() {
         const prizeSection = document.getElementById('prizeSection');
         if (prizeSection) prizeSection.classList.remove('visible');
         updateProgressUI();
+    }
+}
+
+/* --- Scratch Card System --- */
+function initScratchCards() {
+    [1, 2, 3].forEach(id => {
+        const canvas = document.getElementById('canvas' + id);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        let isScratching = false;
+        let scratchPercent = 0;
+
+        // Size canvas to container
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            drawCover(ctx, canvas.width, canvas.height);
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Mouse events
+        canvas.addEventListener('mousedown', (e) => { isScratching = true; scratch(e); });
+        canvas.addEventListener('mousemove', (e) => { if (isScratching) scratch(e); });
+        canvas.addEventListener('mouseup', () => { isScratching = false; checkReveal(id, canvas, ctx); });
+        canvas.addEventListener('mouseleave', () => { isScratching = false; });
+
+        // Touch events
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isScratching = true; scratchTouch(e); });
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); if (isScratching) scratchTouch(e); });
+        canvas.addEventListener('touchend', () => { isScratching = false; checkReveal(id, canvas, ctx); });
+
+        function scratch(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            eraseScratch(ctx, x, y);
+        }
+
+        function scratchTouch(e) {
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            eraseScratch(ctx, x, y);
+        }
+    });
+}
+
+function drawCover(ctx, w, h) {
+    // Metallic pink gradient
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#ec407a');
+    grad.addColorStop(0.3, '#f48fb1');
+    grad.addColorStop(0.5, '#f8bbd0');
+    grad.addColorStop(0.7, '#f48fb1');
+    grad.addColorStop(1, '#d81b60');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Diagonal shimmer lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1;
+    for (let i = -h; i < w + h; i += 12) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i + h, h);
+        ctx.stroke();
+    }
+
+    // Sparkle dots
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    for (let i = 0; i < 30; i++) {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        const r = 1 + Math.random() * 2;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // Text
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.font = 'bold ' + Math.min(w * 0.08, 20) + 'px Quicksand, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✨ ZDRAP MNIE! ✨', w / 2, h / 2 - 10);
+    ctx.font = Math.min(w * 0.06, 14) + 'px Quicksand, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.fillText('Przesuń palcem lub myszką', w / 2, h / 2 + 15);
+}
+
+function eraseScratch(ctx, x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+
+    // Main circle
+    ctx.beginPath();
+    ctx.arc(x, y, 22, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Irregular edges for realism
+    for (let i = 0; i < 5; i++) {
+        const ox = x + (Math.random() - 0.5) * 30;
+        const oy = y + (Math.random() - 0.5) * 30;
+        const r = 5 + Math.random() * 12;
+        ctx.beginPath();
+        ctx.arc(ox, oy, r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    ctx.globalCompositeOperation = 'source-over';
+}
+
+function checkReveal(id, canvas, ctx) {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    let transparent = 0;
+    const total = pixels.length / 4;
+
+    for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] < 128) transparent++;
+    }
+
+    const percent = transparent / total;
+
+    // If >50% scratched, reveal fully
+    if (percent > 0.5) {
+        canvas.style.transition = 'opacity 0.5s ease';
+        canvas.style.opacity = '0';
+        setTimeout(() => {
+            canvas.style.display = 'none';
+            // Show QR button
+            const btn = document.getElementById('qrBtn' + id);
+            if (btn) btn.style.display = 'inline-block';
+        }, 500);
+    }
+}
+
+function showQR(id) {
+    const popup = document.getElementById('qrPopup' + id);
+    const btn = document.getElementById('qrBtn' + id);
+    if (popup.style.display === 'none') {
+        popup.style.display = 'block';
+        btn.textContent = '🔽 Schowaj kod QR';
+    } else {
+        popup.style.display = 'none';
+        btn.textContent = '📦 Kliknij aby odebrać';
     }
 }
 
