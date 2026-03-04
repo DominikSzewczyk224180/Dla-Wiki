@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wszystkiego Najlepszego z Okazji Dnia Kobiet! 💐</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating petals background -->
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero">
+        <div class="hero-flowers hero-flowers--left">
+            <div class="flower flower--1">🌸</div>
+            <div class="flower flower--2">🌷</div>
+            <div class="flower flower--3">🌺</div>
+            <div class="flower flower--4">💮</div>
+            <div class="flower flower--5">🪻</div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">8 marca</div>
+            <h1 class="hero-title">
+                <span class="hero-title__line1">Wszystkiego</span>
+                <span class="hero-title__line2">Najlepszego</span>
+                <span class="hero-title__line3">z Okazji Dnia Kobiet!</span>
+            </h1>
+            <div class="hero-hearts">
+                <span>♥</span><span>♥</span><span>♥</span>
+            </div>
+            <p class="hero-subtitle">Przygotowałem dla Ciebie coś wyjątkowego... <br>Przejdź wszystkie wyzwania i odbierz swoją nagrodę! 🎁</p>
+            <a href="#games" class="hero-cta">
+                <span>Zaczynamy!</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+        </div>
+
+        <div class="hero-flowers hero-flowers--right">
+            <div class="flower flower--6">🌸</div>
+            <div class="flower flower--7">🌷</div>
+            <div class="flower flower--8">🌺</div>
+            <div class="flower flower--9">💮</div>
+            <div class="flower flower--10">🪻</div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== GAMES SECTION ===================== -->
+    <section class="games" id="games">
+        <div class="games-header">
+            <span class="games-header__flower">✿</span>
+            <h2 class="games-header__title">Twoje Wyzwania</h2>
+            <p class="games-header__subtitle">Ukończ wszystkie 4 gry, aby odblokować nagrodę!</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-bar__track">
+                <div class="progress-bar__fill" id="progressFill"></div>
+            </div>
+            <div class="progress-bar__steps">
+                <div class="progress-step" data-step="1">
+                    <div class="progress-step__dot"></div>
+                    <span class="progress-step__label">Quiz</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-step__dot"></div>
+                    <span class="progress-step__label">O Nas</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-step__dot"></div>
+                    <span class="progress-step__label">Melodia</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="progress-step__dot"></div>
+                    <span class="progress-step__label">Memory</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Game 1: Quiz wiedzy ogólnej -->
+            <div class="game-card" data-game="1" id="gameCard1">
+                <div class="game-card__number">01</div>
+                <div class="game-card__icon">🧠</div>
+                <h3 class="game-card__title">Quiz Wiedzy</h3>
+                <p class="game-card__desc">Sprawdź swoją wiedzę ogólną w zabawnym quizie!</p>
+                <div class="game-card__status">
+                    <span class="status-badge status-badge--ready">Do zagrania</span>
+                </div>
+                <a href="games/quiz.html" class="game-card__btn">Graj!</a>
+                <div class="game-card__decoration"></div>
+            </div>
+
+            <!-- Game 2: Quiz o nas -->
+            <div class="game-card game-card--locked" data-game="2" id="gameCard2">
+                <div class="game-card__number">02</div>
+                <div class="game-card__icon">💕</div>
+                <h3 class="game-card__title">Quiz o Nas</h3>
+                <p class="game-card__desc">Ile wiesz o naszej relacji? Przekonaj się!</p>
+                <div class="game-card__status">
+                    <span class="status-badge status-badge--locked">🔒 Zablokowane</span>
+                </div>
+                <a href="games/quiz-o-nas.html" class="game-card__btn game-card__btn--locked">Odblokuj</a>
+                <div class="game-card__decoration"></div>
+            </div>
+
+            <!-- Game 3: Jaka to melodia -->
+            <div class="game-card game-card--locked" data-game="3" id="gameCard3">
+                <div class="game-card__number">03</div>
+                <div class="game-card__icon">🎵</div>
+                <h3 class="game-card__title">Jaka to Melodia?</h3>
+                <p class="game-card__desc">Rozpoznaj piosenki po krótkim fragmencie!</p>
+                <div class="game-card__status">
+                    <span class="status-badge status-badge--locked">🔒 Zablokowane</span>
+                </div>
+                <a href="games/melodia.html" class="game-card__btn game-card__btn--locked">Odblokuj</a>
+                <div class="game-card__decoration"></div>
+            </div>
+
+            <!-- Game 4: Memory -->
+            <div class="game-card game-card--locked" data-game="4" id="gameCard4">
+                <div class="game-card__number">04</div>
+                <div class="game-card__icon">🃏</div>
+                <h3 class="game-card__title">Memory</h3>
+                <p class="game-card__desc">Znajdź wszystkie pary kart w jak najkrótszym czasie!</p>
+                <div class="game-card__status">
+                    <span class="status-badge status-badge--locked">🔒 Zablokowane</span>
+                </div>
+                <a href="games/memory.html" class="game-card__btn game-card__btn--locked">Odblokuj</a>
+                <div class="game-card__decoration"></div>
+            </div>
+        </div>
+
+        <!-- Prize section (hidden until all games complete) -->
+        <div class="prize-section" id="prizeSection">
+            <div class="prize-confetti" id="prizeConfetti"></div>
+            <div class="prize-content">
+                <div class="prize-stars">⭐ 🌟 ⭐</div>
+                <h2 class="prize-title">Gratulacje! 🎉</h2>
+                <p class="prize-text">Przeszłaś wszystkie wyzwania! Oto Twoja nagroda:</p>
+                <div class="prize-qr" id="prizeQR">
+                    <!-- QR code will be placed here -->
+                    <img src="images/qr-code.png" alt="Kod QR do odbioru nagrody" class="prize-qr__image">
+                </div>
+                <p class="prize-hint">Zeskanuj kod QR, żeby odebrać paczkę 📦💝</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="footer-hearts">💗 💖 💗</div>
+        <p class="footer-text">Zrobione z miłością, specjalnie dla Ciebie</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
