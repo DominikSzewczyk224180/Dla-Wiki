@@ -74,9 +74,13 @@
             <div class="mel-player" id="playerArea" style="display:none;">
                 <div class="mel-player__top">
                     <span class="mel-player__label" id="playerLabel">Piosenka 1</span>
-                    <span class="mel-player__hint">Włącz/zatrzymaj muzykę w odtwarzaczu poniżej</span>
+                    <span class="mel-player__hint">Użyj przycisku powyżej żeby włączyć / zatrzymać muzykę</span>
                 </div>
                 <div class="mel-yt-wrapper" id="ytWrapper">
+                    <div class="mel-yt-cover" id="ytCover" onclick="togglePlay()">
+                        <span class="mel-yt-cover__icon" id="coverIcon">▶️</span>
+                        <span class="mel-yt-cover__text" id="coverText">Kliknij żeby odtworzyć</span>
+                    </div>
                     <!-- iframe injected by JS -->
                 </div>
                 <div class="mel-inputs">

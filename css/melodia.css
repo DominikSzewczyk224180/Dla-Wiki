@@ -243,37 +243,56 @@
     margin-top: 0.2rem;
 }
 
-/* YouTube embed wrapper - hide video, show only controls */
+/* YouTube embed wrapper - fully hidden, custom play/pause on top */
 .mel-yt-wrapper {
     margin-bottom: 1rem;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     background: var(--pink-200);
-    height: 54px;
+    height: 60px;
     position: relative;
 }
 .mel-yt-wrapper iframe {
     width: 300%;
-    height: 200px;
+    height: 300px;
     border: none;
     display: block;
     position: absolute;
-    bottom: -4px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    pointer-events: all;
+    transform: translate(-50%, -50%);
+    opacity: 0.01;
 }
-/* Overlay to hide title - leave bottom 30px visible for controls */
-.mel-yt-wrapper::before {
-    content: '';
+/* Full cover overlay */
+.mel-yt-cover {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 24px;
-    background: var(--pink-200);
-    z-index: 2;
-    pointer-events: none;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--pink-200), var(--pink-300));
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-radius: 12px;
+}
+.mel-yt-cover:hover {
+    background: linear-gradient(135deg, var(--pink-300), var(--pink-400));
+}
+.mel-yt-cover__icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+.mel-yt-cover:hover .mel-yt-cover__icon {
+    transform: scale(1.15);
+}
+.mel-yt-cover__text {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pink-700);
 }
 
 /* --- Inputs --- */

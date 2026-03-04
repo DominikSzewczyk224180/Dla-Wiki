@@ -107,22 +107,34 @@ function selectSong(i) {
 
 /* --- YouTube Player (IFrame API) --- */
 function createPlayer(song) {
+    // Remove old player div if exists, keep cover
+    const old = document.getElementById('ytPlayerDiv');
+    if (old) old.remove();
+
     const wrapper = document.getElementById('ytWrapper');
-    wrapper.innerHTML = '<div id="ytPlayerDiv"></div>';
+    const div = document.createElement('div');
+    div.id = 'ytPlayerDiv';
+    wrapper.appendChild(div);
+
+    // Reset cover
+    document.getElementById('coverIcon').textContent = '▶️';
+    document.getElementById('coverText').textContent = 'Kliknij żeby odtworzyć';
 
     function init() {
         ytPlayer = new YT.Player('ytPlayerDiv', {
-            height: '80',
+            height: '300',
             width: '100%',
             videoId: song.youtubeId,
             playerVars: {
                 start: song.startAt || 0,
                 autoplay: 0,
-                controls: 1,
+                controls: 0,
                 modestbranding: 1,
                 rel: 0,
                 fs: 0,
-                playsinline: 1
+                playsinline: 1,
+                disablekb: 1,
+                showinfo: 0
             },
             events: {
                 onStateChange: onYTState
@@ -144,12 +156,31 @@ function onYTState(e) {
         musicPlaying = true;
         startTimer();
         document.getElementById('timerLabel').textContent = '🔊 Czas leci!';
+        document.getElementById('coverIcon').textContent = '⏸️';
+        document.getElementById('coverText').textContent = 'Kliknij żeby zatrzymać';
     } else {
         musicPlaying = false;
         clearTimer();
         if (timeLeft > 0) {
             document.getElementById('timerLabel').textContent = '⏸️ Czas zatrzymany — myśl!';
         }
+        document.getElementById('coverIcon').textContent = '▶️';
+        document.getElementById('coverText').textContent = 'Kliknij żeby odtworzyć';
+    }
+}
+
+function togglePlay() {
+    if (!ytPlayer || timeLeft <= 0) return;
+    try {
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+            ytPlayer.pauseVideo();
+        } else {
+            ytPlayer.playVideo();
+        }
+    } catch(e) {
+        // Player not ready yet, try playing
+        try { ytPlayer.playVideo(); } catch(e2) {}
     }
 }
 
