@@ -1,6 +1,11 @@
 /* =============================================
    JAKA TO MELODIA - GAME LOGIC
-   Based on Polish "Jaka to melodia?" finale format
+   
+   Timer only runs while music is playing.
+   Pause music = pause timer = think forever.
+   1 point for correct title, 1 for correct artist.
+   Max 14 points (7 songs × 2).
+   Easy: need 10/14, Medium: 12/14, Hard: 13/14
    ============================================= */
 
 let difficulty = 'easy';
@@ -9,24 +14,23 @@ let timeLeft = 40;
 let timer = null;
 let score = 0;
 let guessedCount = 0;
-let currentSongIndex = 0;
+let currentSongIndex = -1;
 let gameSongs = [];
 let songResults = [];
 let isPlaying = false;
 let ytPlayer = null;
 let ytReady = false;
-let pointsPerCorrect = 4;
-let passThreshold = 0.6;
+let passThreshold = 10;
 const TOTAL_SONGS = 7;
+const MAX_POINTS = 14;
 
-// Confirm dialog state
 let pendingConfirm = null;
 
 /* --- Difficulty --- */
 const DIFF_SETTINGS = {
-    easy:   { time: 40, points: 4, threshold: 0.6, artistPoints: true },
-    medium: { time: 30, points: 2, threshold: 0.8, artistPoints: true },
-    hard:   { time: 20, points: 1, threshold: 0.9, artistPoints: false }
+    easy:   { time: 40, threshold: 10 },
+    medium: { time: 30, threshold: 12 },
+    hard:   { time: 20, threshold: 13 }
 };
 
 /* --- YouTube API Ready --- */
@@ -50,7 +54,6 @@ function startMelodia(diff) {
     const settings = DIFF_SETTINGS[diff];
     totalTime = settings.time;
     timeLeft = settings.time;
-    pointsPerCorrect = settings.points;
     passThreshold = settings.threshold;
     score = 0;
     guessedCount = 0;
@@ -58,23 +61,16 @@ function startMelodia(diff) {
     isPlaying = false;
     songResults = [];
 
-    // Pick 7 random songs
     gameSongs = shuffleArray([...MELODIA_SONGS]).slice(0, TOTAL_SONGS);
 
-    // Build song slots
     buildSongSlots();
     updateScoreDisplay();
     updateTimerDisplay();
 
     showMelScreen('screenGame');
-
-    // Init YouTube player
     initYTPlayer();
 
-    // Start global timer
-    startGlobalTimer();
-
-    // Auto-select first song
+    // DON'T start timer here — it starts only when music plays
     selectSong(0);
 }
 
@@ -104,38 +100,39 @@ function selectSong(index) {
     if (songResults[index].revealed) return;
     if (timeLeft <= 0) return;
 
+    // Pause current playback when switching
+    stopPlayback();
+
     currentSongIndex = index;
 
-    // Highlight active slot
     document.querySelectorAll('.mel-song-slot').forEach((s, i) => {
         s.classList.toggle('active', i === index);
     });
 
-    // Show player
     document.getElementById('playerArea').style.display = 'block';
     document.getElementById('confirmDialog').style.display = 'none';
     document.getElementById('playerNumber').textContent = `Piosenka ${index + 1}`;
-    document.getElementById('playerStatus').textContent = 'Kliknij play żeby posłuchać';
+    document.getElementById('playerStatus').textContent = 'Kliknij play żeby posłuchać — czas leci tylko gdy gra muzyka!';
     document.getElementById('playIcon').textContent = '▶️';
     document.getElementById('inputTitle').value = '';
     document.getElementById('inputArtist').value = '';
     document.getElementById('inputTitle').focus();
-    isPlaying = false;
 
-    // Load song in YouTube player
     if (ytPlayer && ytReady) {
         const song = gameSongs[index];
-        ytPlayer.cueVideoById({
-            videoId: song.youtubeId,
-            startSeconds: song.startAt || 0
-        });
+        try {
+            ytPlayer.cueVideoById({
+                videoId: song.youtubeId,
+                startSeconds: song.startAt || 0
+            });
+        } catch(e) {}
     }
 }
 
 /* --- YouTube Player --- */
 function initYTPlayer() {
     if (ytPlayer) {
-        ytPlayer.destroy();
+        try { ytPlayer.destroy(); } catch(e) {}
     }
 
     const checkReady = setInterval(() => {
@@ -163,11 +160,13 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
         document.getElementById('playIcon').textContent = '⏸️';
-        document.getElementById('playerStatus').textContent = '🔊 Gra...';
-    } else if (event.data === YT.PlayerState.PAUSED) {
+        document.getElementById('playerStatus').textContent = '🔊 Gra... (czas leci!)';
+        startTimer();
+    } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
         isPlaying = false;
         document.getElementById('playIcon').textContent = '▶️';
-        document.getElementById('playerStatus').textContent = '⏸️ Pauza';
+        document.getElementById('playerStatus').textContent = '⏸️ Pauza — czas zatrzymany, możesz myśleć';
+        pauseTimer();
     }
 }
 
@@ -187,23 +186,31 @@ function stopPlayback() {
         try { ytPlayer.pauseVideo(); } catch(e) {}
     }
     isPlaying = false;
+    pauseTimer();
 }
 
-/* --- Global Timer --- */
-function startGlobalTimer() {
-    clearInterval(timer);
+/* --- Timer (only runs when music plays) --- */
+function startTimer() {
+    if (timer) return; // already running
     timer = setInterval(() => {
         timeLeft--;
         updateTimerDisplay();
 
         if (timeLeft <= 0) {
-            clearInterval(timer);
             timeLeft = 0;
             updateTimerDisplay();
             stopPlayback();
+            pauseTimer();
             endGame();
         }
     }, 1000);
+}
+
+function pauseTimer() {
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
 }
 
 function updateTimerDisplay() {
@@ -215,6 +222,7 @@ function updateTimerDisplay() {
 
     if (percent < 25) {
         fill.classList.add('critical');
+        fill.classList.remove('warning');
     } else if (percent < 50) {
         fill.classList.add('warning');
         fill.classList.remove('critical');
@@ -239,10 +247,12 @@ function submitAnswer() {
 
     if (!inputTitle && !inputArtist) return;
 
+    stopPlayback();
+
     const titleMatch = matchText(inputTitle, song.acceptedTitles, song.title);
     const artistMatch = matchText(inputArtist, song.acceptedArtists, song.artist);
 
-    // Check if we need to confirm fuzzy matches
+    // Check if fuzzy matches need confirmation
     if (titleMatch.type === 'fuzzy' || artistMatch.type === 'fuzzy') {
         showConfirmDialog(titleMatch, artistMatch, song);
         return;
@@ -264,17 +274,15 @@ function matchText(input, acceptedList, original) {
         }
     }
 
-    // Check if input contains any accepted value or vice versa
+    // Contains match (one word is enough for artist)
     for (const accepted of acceptedList) {
         const normAccepted = normalizeText(accepted);
-        if (normalized.includes(normAccepted) || normAccepted.includes(normalized)) {
-            if (normalized.length >= 3) {
-                return { matched: true, type: 'exact', input: input };
-            }
+        if (normalized.length >= 3 && (normalized.includes(normAccepted) || normAccepted.includes(normalized))) {
+            return { matched: true, type: 'exact', input: input };
         }
     }
 
-    // Fuzzy match - check similarity
+    // Fuzzy match - Levenshtein
     for (const accepted of acceptedList) {
         const sim = similarity(normalized, normalizeText(accepted));
         if (sim > 0.6) {
@@ -289,7 +297,7 @@ function normalizeText(text) {
     return text
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')  // remove diacritics
+        .replace(/[\u0300-\u036f]/g, '')
         .replace(/ł/g, 'l')
         .replace(/[^a-z0-9\s]/g, '')
         .trim();
@@ -321,7 +329,7 @@ function levenshtein(a, b) {
     return matrix[b.length][a.length];
 }
 
-/* --- Confirm Dialog (fuzzy matches) --- */
+/* --- Confirm Dialog --- */
 function showConfirmDialog(titleMatch, artistMatch, song) {
     stopPlayback();
     document.getElementById('playerArea').style.display = 'none';
@@ -357,7 +365,6 @@ function confirmNo() {
     document.getElementById('playerArea').style.display = 'block';
     const titleExact = pendingConfirm ? pendingConfirm.titleExact : false;
     const artistExact = pendingConfirm ? pendingConfirm.artistExact : false;
-    // Only count the exact matches
     if (titleExact || artistExact) {
         processAnswer(titleExact, artistExact);
     }
@@ -375,14 +382,12 @@ function processAnswer(titleCorrect, artistCorrect) {
     result.guessedArtist = artistCorrect;
     result.revealed = true;
 
-    // Calculate points
+    // 1 point for title, 1 point for artist
     let pts = 0;
-    if (titleCorrect) pts += pointsPerCorrect;
-    if (artistCorrect && DIFF_SETTINGS[difficulty].artistPoints) pts += pointsPerCorrect;
+    if (titleCorrect) pts++;
+    if (artistCorrect) pts++;
 
-    if (titleCorrect || artistCorrect) {
-        guessedCount++;
-    }
+    if (titleCorrect || artistCorrect) guessedCount++;
     score += pts;
     updateScoreDisplay();
 
@@ -391,22 +396,18 @@ function processAnswer(titleCorrect, artistCorrect) {
     if (titleCorrect && artistCorrect) {
         slot.classList.add('correct');
         slot.querySelector('.mel-song-slot__status').textContent = '✅';
-        slot.querySelector('.mel-song-slot__info').textContent = `${song.title} — ${song.artist}`;
     } else if (titleCorrect || artistCorrect) {
         slot.classList.add('partial');
         slot.querySelector('.mel-song-slot__status').textContent = '🟡';
-        slot.querySelector('.mel-song-slot__info').textContent = `${song.title} — ${song.artist}`;
     } else {
         slot.classList.add('wrong');
         slot.querySelector('.mel-song-slot__status').textContent = '❌';
-        slot.querySelector('.mel-song-slot__info').textContent = `${song.title} — ${song.artist}`;
     }
+    slot.querySelector('.mel-song-slot__info').textContent = `${song.title} — ${song.artist}`;
 
-    // Check if all done or find next
+    // Find next unrevealed
     const nextUnrevealed = songResults.findIndex(r => !r.revealed);
     if (nextUnrevealed === -1) {
-        stopPlayback();
-        clearInterval(timer);
         setTimeout(endGame, 500);
     } else {
         selectSong(nextUnrevealed);
@@ -418,7 +419,8 @@ function skipSong() {
     if (currentSongIndex < 0 || timeLeft <= 0) return;
     if (songResults[currentSongIndex].revealed) return;
 
-    // Find next unrevealed song (wrap around)
+    stopPlayback();
+
     const start = currentSongIndex;
     let next = (currentSongIndex + 1) % TOTAL_SONGS;
     while (next !== start && songResults[next].revealed) {
@@ -432,9 +434,9 @@ function skipSong() {
 /* --- End Game --- */
 function endGame() {
     stopPlayback();
-    clearInterval(timer);
+    pauseTimer();
 
-    // Mark any unrevealed as wrong
+    // Mark unrevealed as missed
     songResults.forEach((r, i) => {
         if (!r.revealed) {
             r.revealed = true;
@@ -452,54 +454,48 @@ function endGame() {
 
     showMelScreen('screenResults');
 
-    // Calculate max possible points
-    const maxPoints = DIFF_SETTINGS[difficulty].artistPoints
-        ? TOTAL_SONGS * pointsPerCorrect * 2
-        : TOTAL_SONGS * pointsPerCorrect;
-
-    const percent = guessedCount / TOTAL_SONGS;
-
-    // Results UI
     const icon = document.getElementById('melResultsIcon');
     const title = document.getElementById('melResultsTitle');
     const subtitle = document.getElementById('melResultsSubtitle');
 
-    if (percent >= passThreshold) {
+    if (score >= passThreshold) {
         icon.textContent = '🏆';
         title.textContent = 'Brawo, mistrzyni melodii!';
-        subtitle.textContent = `Zaliczone! Zdobyłaś ${score} punktów`;
+        subtitle.textContent = `Zaliczone! Zdobyłaś ${score} / ${MAX_POINTS} punktów`;
         markGameComplete(3);
     } else {
         icon.textContent = '🎵';
         title.textContent = 'Prawie!';
-        const needed = Math.ceil(passThreshold * TOTAL_SONGS);
-        subtitle.textContent = `Potrzebujesz ${needed}/${TOTAL_SONGS} zgadniętych piosenek. Spróbuj jeszcze raz!`;
+        subtitle.textContent = `Zdobyłaś ${score} / ${MAX_POINTS} pkt. Potrzebujesz ${passThreshold} pkt żeby zaliczyć. Spróbuj jeszcze raz!`;
     }
 
     document.getElementById('melFinalScore').textContent = score;
 
-    // Build results list
+    // Results list
     const list = document.getElementById('resultsSongsList');
     list.innerHTML = '';
     gameSongs.forEach((song, i) => {
         const r = songResults[i];
         const div = document.createElement('div');
         div.className = 'mel-result-row';
-        
+
         let statusIcon = '❌';
         let statusClass = 'wrong';
+        let detail = '';
         if (r.guessedTitle && r.guessedArtist) {
-            statusIcon = '✅';
-            statusClass = 'correct';
-        } else if (r.guessedTitle || r.guessedArtist) {
-            statusIcon = '🟡';
-            statusClass = 'partial';
+            statusIcon = '✅'; statusClass = 'correct'; detail = '(+2 pkt)';
+        } else if (r.guessedTitle) {
+            statusIcon = '🟡'; statusClass = 'partial'; detail = '(+1 pkt — tytuł)';
+        } else if (r.guessedArtist) {
+            statusIcon = '🟡'; statusClass = 'partial'; detail = '(+1 pkt — wykonawca)';
+        } else {
+            detail = '(0 pkt)';
         }
-        
+
         div.classList.add(statusClass);
         div.innerHTML = `
             <span class="mel-result-row__icon">${statusIcon}</span>
-            <span class="mel-result-row__text"><strong>${song.title}</strong> — ${song.artist}</span>
+            <span class="mel-result-row__text"><strong>${song.title}</strong> — ${song.artist} <span style="color:var(--text-light);font-size:0.8em;">${detail}</span></span>
         `;
         list.appendChild(div);
     });
@@ -518,7 +514,7 @@ function markGameComplete(gameNumber) {
 /* --- Restart --- */
 function restartMelodia() {
     stopPlayback();
-    clearInterval(timer);
+    pauseTimer();
     showMelScreen('screenDifficulty');
 }
 

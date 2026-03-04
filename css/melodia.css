@@ -322,6 +322,49 @@
     padding: 0.5em 1.2em;
 }
 
+/* Ensure buttons have correct styles in melodia */
+.mel-player__actions .btn-primary,
+.mel-confirm__buttons .btn-primary,
+.results-buttons .btn-primary {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(236, 64, 122, 0.3);
+    transition: all 0.3s ease;
+}
+
+.mel-player__actions .btn-primary:hover,
+.mel-confirm__buttons .btn-primary:hover,
+.results-buttons .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
+}
+
+.mel-player__actions .btn-secondary,
+.mel-confirm__buttons .btn-secondary,
+.results-buttons .btn-secondary {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--pink-500);
+    background: var(--white);
+    border: 2px solid var(--pink-300);
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mel-player__actions .btn-secondary:hover,
+.mel-confirm__buttons .btn-secondary:hover,
+.results-buttons .btn-secondary:hover {
+    background: var(--pink-100);
+    border-color: var(--pink-400);
+}
+
 /* --- Confirm Dialog --- */
 .mel-confirm {
     background: var(--pink-100);
