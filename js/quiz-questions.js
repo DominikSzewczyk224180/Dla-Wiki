@@ -64,19 +64,6 @@ const QUESTIONS = [
     },
     {
         category: "Geografia",
-        question: "W jakim kraju leży Machu Picchu?",
-        answers: ["Kolumbia", "Chile", "Peru", "Boliwia"],
-        correct: 2
-    },
-    {
-        category: "Geografia",
-        question: "Na jakim kontynencie leży Egipt?",
-        answers: ["Azja", "Europa", "Afryka", "Ameryka Pd."],
-        correct: 2,
-        funFact: "Afryka — choć Synaj jest w Azji! 🌍"
-    },
-    {
-        category: "Geografia",
         question: "Jaka jest stolica Australii?",
         answers: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
         correct: 2,
@@ -100,7 +87,7 @@ const QUESTIONS = [
         question: "Na jakiej wyspie leży Bali?",
         answers: ["Borneo", "Jawa", "Sumatra", "Bali to osobna wyspa"],
         correct: 3,
-        funFact: "Bali to kiedyś maybe... 🌺"
+        funFact: "Bali to kiedyś odwiedzimy... 🌺"
     },
     {
         category: "Geografia",
@@ -159,13 +146,6 @@ const QUESTIONS = [
         correct: 1,
         funFact: "Około 9h — damy radę! ✈️"
     },
-    {
-        category: "Podróże ✈️",
-        question: "W jakim kraju jest Angkor Wat?",
-        answers: ["Wietnam", "Tajlandia", "Kambodża", "Laos"],
-        correct: 2,
-        funFact: "Kambodża — może kiedyś odwiedzimy! 🛕"
-    },
     // ===== ARCHITEKTURA =====
     {
         category: "Architektura 🏛️",
@@ -201,12 +181,6 @@ const QUESTIONS = [
         answers: ["Marmur", "Cegła i beton", "Granit", "Wapień"],
         correct: 1,
         funFact: "Rzymski beton przetrwał 2000 lat — dzisiejszy by nie dał rady! 🏛️"
-    },
-    {
-        category: "Architektura 🏛️",
-        question: "Jak nazywa się okno okrągłe w architekturze gotyckiej?",
-        answers: ["Luneta", "Rozeta", "Okulus", "Bifora"],
-        correct: 1
     },
     {
         category: "Architektura 🏛️",
@@ -290,30 +264,11 @@ const QUESTIONS = [
     },
     {
         category: "Matematyka 🔢",
-        question: "Ile stopni ma kąt prosty?",
-        answers: ["45°", "60°", "90°", "180°"],
-        correct: 2
-    },
-    {
-        category: "Matematyka 🔢",
-        question: "Ile kątów ma trójkąt, w którym jeden kąt to 90°?",
-        answers: ["1 prosty, 2 ostre", "2 proste, 1 ostry", "3 ostre", "1 prosty, 1 ostry, 1 rozwarty"],
-        correct: 0
-    },
-    {
-        category: "Matematyka 🔢",
         question: "Ile to: √169?",
         answers: ["11", "12", "13", "14"],
         correct: 2
     },
     // ===== PODCHWYTLIWE =====
-    {
-        category: "Podchwytliwe 🤔",
-        question: "Chodzi po polu, nazywa się Kura — co to jest?",
-        answers: ["Kura", "Traktor", "Krowa", "Kurka polna"],
-        correct: 1,
-        funFact: "Ha! Kura to marka traktora! 🚜😂"
-    },
     {
         category: "Podchwytliwe 🤔",
         question: "Co jest cięższe — kilogram pierza czy kilogram żelaza?",
@@ -337,43 +292,15 @@ const QUESTIONS = [
     },
     {
         category: "Podchwytliwe 🤔",
-        question: "Jeśli masz 3 jabłka i zabierzesz 2, ile masz jabłek?",
-        answers: ["1", "2", "3", "0"],
-        correct: 1,
-        funFact: "Zabrałaś 2 — więc masz 2! 🍎🍎"
-    },
-    {
-        category: "Podchwytliwe 🤔",
         question: "Co rośnie w dół?",
         answers: ["Drzewo", "Sopel lodu", "Stalaktyt", "Sopel i stalaktyt"],
         correct: 3
     },
     {
         category: "Podchwytliwe 🤔",
-        question: "Przed czym ludzie zamykają oczy?",
-        answers: ["Przed ciemnością", "Przed strachem", "Przed przyszłością", "Przed snem"],
-        correct: 2,
-        funFact: "Filozoficznie! Ale też przed snem 😄"
-    },
-    {
-        category: "Podchwytliwe 🤔",
         question: "Kto jest na banknocie 100 zł?",
         answers: ["Fryderyk Chopin", "Władysław Jagiełło", "Mieszko I", "Jan III Sobieski"],
         correct: 1
-    },
-    {
-        category: "Podchwytliwe 🤔",
-        question: "Pasterz miał 17 owiec. Wszystkie oprócz 9 uciekły. Ile zostało?",
-        answers: ["8", "9", "17", "0"],
-        correct: 1,
-        funFact: "\"Wszystkie oprócz 9\" — czyli 9 zostało! 🐑"
-    },
-    {
-        category: "Podchwytliwe 🤔",
-        question: "Ile razy można odjąć 5 od 25?",
-        answers: ["5 razy", "4 razy", "1 raz", "Nieskończenie"],
-        correct: 2,
-        funFact: "Za pierwszym razem — potem odejmujesz już od 20! 🤓"
     },
     // ===== WIEDZA OGÓLNA =====
     {
@@ -420,12 +347,6 @@ const QUESTIONS = [
         answers: ["1", "2", "3", "8"],
         correct: 2,
         funFact: "Trzy serca — jedno główne i dwa skrzelowe! 🐙"
-    },
-    {
-        category: "Wiedza ogólna",
-        question: "Jaki owoc jest symbolem marki Apple?",
-        answers: ["Gruszka", "Jabłko", "Wiśnia", "Brzoskwinia"],
-        correct: 1
     },
     {
         category: "Wiedza ogólna",
@@ -487,24 +408,6 @@ const QUESTIONS = [
         question: "Ile dni ma rok przestępny?",
         answers: ["364", "365", "366", "367"],
         correct: 2
-    },
-    {
-        category: "Wiedza ogólna",
-        question: "Jaki kolor powstaje z mieszania niebieskiego i żółtego?",
-        answers: ["Fioletowy", "Zielony", "Pomarańczowy", "Brązowy"],
-        correct: 1
-    },
-    {
-        category: "Wiedza ogólna",
-        question: "Ile to tuzin?",
-        answers: ["6", "10", "12", "24"],
-        correct: 2
-    },
-    {
-        category: "Wiedza ogólna",
-        question: "Jak nazywa się samiec pszczoły?",
-        answers: ["Szerszeń", "Truteń", "Bąk", "Osa"],
-        correct: 1
     },
     {
         category: "Wiedza ogólna",
@@ -607,12 +510,6 @@ const QUESTIONS = [
     },
     {
         category: "Wiedza ogólna",
-        question: "Ile centymetrów jest w jednym metrze?",
-        answers: ["10", "100", "1000", "10000"],
-        correct: 1
-    },
-    {
-        category: "Wiedza ogólna",
         question: "Jak nazywa się najsłynniejsze dzieło Beethovena?",
         answers: ["Cztery pory roku", "Sonata Księżycowa", "Bolero", "Requiem"],
         correct: 1
@@ -631,22 +528,9 @@ const QUESTIONS = [
     },
     {
         category: "Wiedza ogólna",
-        question: "Ile to jest wiek (jako jednostka czasu)?",
-        answers: ["10 lat", "50 lat", "100 lat", "1000 lat"],
-        correct: 2
-    },
-    {
-        category: "Wiedza ogólna",
         question: "Jak nazywa się stolica Hiszpanii?",
         answers: ["Barcelona", "Madryt", "Sewilla", "Walencja"],
         correct: 1
-    },
-    {
-        category: "Podchwytliwe 🤔",
-        question: "Co ma głowę i ogon, ale nie ma ciała?",
-        answers: ["Wąż", "Moneta", "Kometa", "Szpilka"],
-        correct: 1,
-        funFact: "Orzeł czy reszka? 🪙"
     },
     {
         category: "Podróże ✈️",
