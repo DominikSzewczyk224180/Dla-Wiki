@@ -22,9 +22,9 @@ const MAX_POINTS = 14;
 let pendingConfirm = null;
 
 const DIFF = {
-    easy:   { time: 40, threshold: 10 },
-    medium: { time: 30, threshold: 12 },
-    hard:   { time: 20, threshold: 13 }
+    easy:   { time: 21, threshold: 10 },
+    medium: { time: 14, threshold: 12 },
+    hard:   { time: 7,  threshold: 13 }
 };
 
 /* --- Load YouTube IFrame API --- */

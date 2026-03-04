@@ -17,7 +17,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["fever dream"],
         acceptedArtists: ["alex warren", "warren", "alex"],
         youtubeId: "hkUSnrHQJHg",
-        startAt: 0
+        startAt: 19
     },
     {
         title: "W kilometrach",
@@ -33,7 +33,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["kiss cam", "kisscam"],
         acceptedArtists: ["mata"],
         youtubeId: "z9HsSzoRT1Y",
-        startAt: 0
+        startAt: 3
     },
     {
         title: "Up Up Up",
