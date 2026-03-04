@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz o Nas 💕</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quiz-o-nas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="qon-body">
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- ===== START ===== -->
+    <div class="qon-screen active" id="screenStart">
+        <div class="qon-box qon-box--start">
+            <a href="../index.html" class="qon-back">← Powrót</a>
+            <div class="qon-start-icon">💕</div>
+            <h1 class="qon-start-title">Quiz o Nas</h1>
+            <p class="qon-start-desc">Ile pamiętasz z naszych wspólnych chwil?<br>10 losowych pytań — sprawdź się!</p>
+            <button class="qon-btn-primary qon-btn-big" onclick="startQuizONas()">Zaczynamy! 💖</button>
+        </div>
+    </div>
+
+    <!-- ===== GAME ===== -->
+    <div class="qon-screen" id="screenQuiz">
+        <div class="qon-box">
+            <div class="qon-hud">
+                <span class="qon-hud__q" id="qCounter">1 / 10</span>
+                <span class="qon-hud__score">💖 <span id="qScore">0</span></span>
+            </div>
+            <div class="qon-progress">
+                <div class="qon-progress__fill" id="qProgressFill"></div>
+            </div>
+            <h2 class="qon-question" id="qText"></h2>
+            <div class="qon-answers" id="qAnswers"></div>
+            <div class="qon-feedback" id="qFeedback"></div>
+        </div>
+    </div>
+
+    <!-- ===== RESULTS ===== -->
+    <div class="qon-screen" id="screenResults">
+        <div class="qon-box qon-box--results">
+            <div class="qon-results-icon" id="rIcon">💕</div>
+            <h2 class="qon-results-title" id="rTitle">Wow!</h2>
+            <p class="qon-results-sub" id="rSub"></p>
+            <div class="qon-results-big">
+                <span class="qon-results-big__num" id="rScore">0</span>
+                <span class="qon-results-big__label">/ 10</span>
+            </div>
+            <div class="qon-results-btns">
+                <button class="qon-btn-primary" onclick="restartQuizONas()">Zagraj ponownie</button>
+                <a href="../index.html" class="qon-btn-secondary">Wróć do menu</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/quiz-o-nas.js"></script>
+    <script>
+        const ctr = document.getElementById('petalsContainer');
+        const emj = ['🌸','🩷','💗','🪷','✿'];
+        setInterval(() => {
+            const p = document.createElement('span');
+            p.classList.add('petal');
+            p.textContent = emj[Math.floor(Math.random()*emj.length)];
+            p.style.left = Math.random()*100+'%';
+            p.style.animationDuration = (8+Math.random()*10)+'s';
+            p.style.fontSize = (0.7+Math.random()*0.8)+'rem';
+            ctr.appendChild(p);
+            setTimeout(()=>p.remove(), 18000);
+        }, 3000);
+    </script>
+</body>
+</html>

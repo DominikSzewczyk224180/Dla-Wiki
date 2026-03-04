@@ -1,0 +1,274 @@
+/* =============================================
+   QUIZ O NAS - STYLES
+   ============================================= */
+
+.qon-body {
+    min-height: 100vh;
+    background: linear-gradient(170deg, var(--pink-100) 0%, var(--white) 40%, var(--pink-200) 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+}
+
+.qon-screen {
+    display: none;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    animation: qonIn 0.4s ease-out;
+}
+.qon-screen.active { display: block; }
+
+@keyframes qonIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Box --- */
+.qon-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.8rem;
+    box-shadow: 0 10px 40px rgba(236, 64, 122, 0.1);
+    border: 2px solid var(--pink-200);
+    position: relative;
+}
+.qon-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--pink-400), var(--rose-gold), var(--pink-400));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* --- Back --- */
+.qon-back {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    margin-bottom: 1.2rem;
+    transition: color 0.2s;
+}
+.qon-back:hover { color: var(--pink-500); }
+
+/* --- Start --- */
+.qon-start-icon { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; }
+.qon-start-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+}
+.qon-start-desc {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* --- Buttons --- */
+.qon-btn-primary {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+    padding: 0.65em 1.8em;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(236, 64, 122, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.qon-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
+}
+.qon-btn-big {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    padding: 0.8em 2em;
+}
+.qon-btn-secondary {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--pink-500);
+    background: var(--white);
+    padding: 0.65em 1.8em;
+    border-radius: 50px;
+    border: 2px solid var(--pink-300);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.qon-btn-secondary:hover {
+    background: var(--pink-100);
+    border-color: var(--pink-400);
+}
+
+/* --- HUD --- */
+.qon-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    font-weight: 600;
+}
+.qon-hud__score { font-size: 1rem; }
+
+/* --- Progress --- */
+.qon-progress {
+    height: 4px;
+    background: var(--pink-100);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+}
+.qon-progress__fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--pink-400), var(--pink-600));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* --- Question --- */
+.qon-question {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    animation: qonIn 0.35s ease-out;
+}
+
+/* --- Answers --- */
+.qon-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+.qon-answer {
+    background: var(--cream);
+    border: 2px solid var(--pink-200);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    line-height: 1.4;
+}
+.qon-answer:hover:not(.disabled) {
+    border-color: var(--pink-400);
+    background: var(--pink-100);
+    transform: translateX(4px);
+}
+.qon-answer.correct {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+    color: #2e7d32;
+    animation: correctPop 0.4s ease;
+}
+.qon-answer.wrong {
+    background: #ffebee;
+    border-color: #ef5350;
+    color: #c62828;
+    animation: wrongShake 0.4s ease;
+}
+.qon-answer.disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+.qon-answer.disabled.correct,
+.qon-answer.disabled.wrong { opacity: 1; }
+
+@keyframes correctPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+@keyframes wrongShake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* --- Feedback --- */
+.qon-feedback {
+    min-height: 2.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--pink-600);
+    padding: 0.6rem;
+    background: var(--pink-100);
+    border-radius: var(--radius-sm);
+    line-height: 1.4;
+    animation: qonIn 0.3s ease-out;
+}
+.qon-feedback:empty {
+    background: transparent;
+    min-height: 0;
+    padding: 0;
+}
+
+/* --- Results --- */
+.qon-box--results { text-align: center; }
+.qon-results-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.qon-results-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--pink-600);
+    margin-bottom: 0.3rem;
+}
+.qon-results-sub {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+.qon-results-big { margin-bottom: 2rem; }
+.qon-results-big__num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--pink-600);
+}
+.qon-results-big__label {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+.qon-results-btns {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* --- Responsive --- */
+@media (max-width: 550px) {
+    .qon-box { padding: 1.4rem 1rem; }
+}
