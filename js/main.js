@@ -86,7 +86,6 @@ function updateProgressUI() {
         if (!card) continue;
 
         const isCompleted = completed.includes(i);
-        const isUnlocked = i === 1 || completed.includes(i - 1);
 
         // Remove all states first
         card.classList.remove('game-card--locked', 'game-card--completed');
@@ -104,7 +103,8 @@ function updateProgressUI() {
                 btn.classList.remove('game-card__btn--locked');
                 btn.textContent = 'Zagraj ponownie';
             }
-        } else if (isUnlocked) {
+        } else {
+            // All games are always available
             if (statusBadge) {
                 statusBadge.className = 'status-badge status-badge--ready';
                 statusBadge.textContent = 'Do zagrania';
@@ -112,16 +112,6 @@ function updateProgressUI() {
             if (btn) {
                 btn.classList.remove('game-card__btn--locked');
                 btn.textContent = 'Graj!';
-            }
-        } else {
-            card.classList.add('game-card--locked');
-            if (statusBadge) {
-                statusBadge.className = 'status-badge status-badge--locked';
-                statusBadge.textContent = '🔒 Zablokowane';
-            }
-            if (btn) {
-                btn.classList.add('game-card__btn--locked');
-                btn.textContent = 'Odblokuj';
             }
         }
     }

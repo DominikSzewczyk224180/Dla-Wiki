@@ -229,7 +229,7 @@ body {
 
 .hero-title__line1 {
     display: block;
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(1.6rem, 4.5vw, 2.5rem);
     font-weight: 400;
     color: var(--text-medium);
     animation: titleLine 1s ease-out 0.3s both;
@@ -237,7 +237,7 @@ body {
 
 .hero-title__line2 {
     display: block;
-    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
     font-weight: 700;
     color: var(--pink-600);
     font-style: italic;
@@ -246,6 +246,37 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.hero-name {
+    position: relative;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.hero-name::after {
+    content: 'mojego Dziubaska';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: var(--font-script);
+    background: linear-gradient(135deg, var(--pink-600), var(--rose-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+}
+
+.hero-name:hover {
+    opacity: 0;
+}
+
+.hero-name:hover::after {
+    opacity: 1;
 }
 
 .hero-title__line3 {
