@@ -699,31 +699,180 @@ body {
 }
 
 .prize-text {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--text-medium);
     margin-bottom: 2rem;
+    line-height: 1.5;
 }
 
-.prize-qr {
-    display: inline-block;
-    padding: 1rem;
-    background: var(--white);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-soft);
+/* --- Prize Cards --- */
+.prize-card {
     margin-bottom: 1.5rem;
 }
 
-.prize-qr__image {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
+.prize-card__label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--pink-600);
+    margin-bottom: 0.6rem;
+}
+
+/* --- Scratch Area --- */
+.scratch-area {
+    position: relative;
+    min-height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.scratch-cover {
+    position: relative;
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-500), var(--rose-gold));
+    padding: 1.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    z-index: 2;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.scratch-cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.05) 10px,
+        rgba(255,255,255,0.05) 20px
+    );
+    animation: scratchShimmer 3s linear infinite;
+}
+
+@keyframes scratchShimmer {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(28px, 28px); }
+}
+
+.scratch-cover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(236, 64, 122, 0.3);
+}
+
+.scratch-text {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     display: block;
+}
+
+.scratch-sparkles {
+    position: relative;
+    z-index: 1;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Scratching animation */
+.scratch-cover.scratching {
+    animation: scratchOff 0.8s ease-out forwards;
+}
+
+@keyframes scratchOff {
+    0% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+    30% {
+        clip-path: inset(0 0 0 30%);
+    }
+    60% {
+        clip-path: inset(10% 0 10% 60%);
+        opacity: 0.7;
+    }
+    100% {
+        clip-path: inset(50% 50% 50% 50%);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* --- Revealed Prize --- */
+.scratch-reveal {
+    padding: 1.5rem;
+    background: var(--white);
+    border: 2px solid var(--pink-300);
+    border-radius: var(--radius-md);
+    animation: revealBounce 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+.scratch-area:not(.revealed) .scratch-reveal {
+    display: none;
+}
+
+@keyframes revealBounce {
+    0% { opacity: 0; transform: scale(0.8); }
+    60% { transform: scale(1.03); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.prize-img {
+    width: 160px;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+    margin: 0 auto 1rem;
+    display: block;
+    border-radius: 10px;
+}
+
+.prize-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.prize-delivery {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    text-align: left;
+    background: var(--pink-100);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+}
+
+.prize-delivery__icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
 }
 
 .prize-hint {
     font-family: var(--font-script);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--rose-gold);
+    margin-top: 0.5rem;
 }
 
 /* =============================================

@@ -7,11 +7,11 @@ const QUESTIONS_ONAS = [
         question: "Jakie piwo piliśmy na plaży na Cyprze?",
         answers: ["Heineken", "KEO", "Efes", "Corona"],
         correct: 1,
-        funFact: "KEO — smak cypryjskiego lata! 🍺🏖️"
+        funFact: "KEO — pyszne było! 🍺🏖️"
     },
     {
         question: "Gdzie pierwszy raz się całowaliśmy?",
-        answers: ["Na Małej Czantorii", "W kinie", "Na Rynku w Krakowie", "W parku w Rybniku"],
+        answers: ["Na Małej Czantorii", "Na Pniowcu", "Na Rynku w Krakowie", "W parku w Rybniku"],
         correct: 0,
         funFact: "Mała Czantoria — najromantyczniejszy szczyt! 🏔️💋"
     },
@@ -23,15 +23,15 @@ const QUESTIONS_ONAS = [
     },
     {
         question: "W jakim muzeum byliśmy po raz pierwszy razem?",
-        answers: ["Muzeum Narodowe w Krakowie", "Muzeum Iluzji w Łodzi", "Muzeum Techniki w Warszawie", "Muzeum Śląskie w Katowicach"],
+        answers: ["Muzeum Narodowe w Krakowie", "Muzeum Iluzji w Łodzi", "Muzeum Techniki w Łodzi", "Muzeum Śląskie w Katowicach"],
         correct: 1,
-        funFact: "Muzeum Iluzji — pamiętasz te szalone zdjęcia? 🤪📸"
+        funFact: "Muzeum Iluzji — pamiętasz te szalone fotki? 🤪📸"
     },
     {
         question: "Gdzie jechaliśmy po raz pierwszy razem hulajnogą?",
         answers: ["We Wrocławiu", "W Łodzi", "W Rybniku", "Na Cyprze"],
         correct: 1,
-        funFact: "Łódź na hulajnodze — co za wyprawa! 🛴"
+        funFact: "Łódź na hulajnodze — to było cos XD! 🛴"
     },
     {
         question: "Jaką rzeką płynęliśmy pierwszy raz kajakiem?",
@@ -43,7 +43,7 @@ const QUESTIONS_ONAS = [
         question: "Kiedy spaliśmy po raz pierwszy w namiocie?",
         answers: ["Lipiec 2024", "Sierpień 2024", "Kwiecień 2025", "Maj 2025"],
         correct: 1,
-        funFact: "Sierpień 2024 — pamiętna noc pod gwiazdami! ⛺🌌"
+        funFact: "Sierpień 2024 — pamiętna noc! ⛺🌌"
     },
     {
         question: "Kto wygrał w mini golfa?",
@@ -73,19 +73,19 @@ const QUESTIONS_ONAS = [
         question: "Ile metrów ma szczyt, z którego zjeżdżaliśmy na nartach w Słowacji?",
         answers: ["1024 m (Chopok)", "2024 m (Chopok)", "1624 m (Łomnica)", "1492 m (Kasprowy)"],
         correct: 1,
-        funFact: "Chopok — 2024 m, co za zjazd! ⛷️🏔️"
+        funFact: "Chopok — 2024 m, ale smigalismy! ⛷️🏔️"
     },
     {
         question: "Jakie wino piliśmy w 2025 na Walentynki?",
         answers: ["Carlo Rossi", "Hugo", "Nie piliśmy wina", "Prosecco"],
         correct: 1,
-        funFact: "Hugo — walentynkowy klasyk! 🥂💝"
+        funFact: "Hugo — pyszne bylo! 🥂💝"
     },
     {
         question: "Co Wiki znalazła 16 kwietnia w niespodziance?",
         answers: ["Bilety do kina", "Bilety do Mediolanu", "Zabawkowego konia", "Zdrapkę"],
         correct: 1,
-        funFact: "Bilety do Mediolanu! ✈️🇮🇹 Niespodzianka!"
+        funFact: "Bilety do Mediolanu! ✈️ Niespodzianka!"
     },
     {
         question: "Co miałem na szyi na balu architekta?",
@@ -95,13 +95,13 @@ const QUESTIONS_ONAS = [
     },
     {
         question: "Kto jest największym słodziakiem na świecie?",
-        answers: ["Kot sąsiadów", "Donio", "Pies ze spaceru", "Wiki"],
+        answers: ["Kot Kevin", "Donio", "Pies goldi", "Wiki"],
         correct: 3,
         funFact: "Oczywiście że Wiki! 🥰👑"
     },
     {
         question: "Jakiego smaku lody jedliśmy razem w Mediolanie?",
-        answers: ["Wiki pistacjowe, Donio waniliowe", "Oboje czekoladowe", "Pistacjowe", "Truskawkowe"],
+        answers: ["Wiki pistacjowe, Donio waniliowe", "Oboje Straciatella", "Pistacjowe", "Truskawkowe"],
         correct: 2,
         funFact: "Pistacjowe w Mediolanie — najlepsze na świecie! 🍦🤌"
     },
@@ -121,25 +121,25 @@ const QUESTIONS_ONAS = [
         question: "Jak nazywa się szlak górski w Hiszpanii, na który chodziliśmy?",
         answers: ["Camino de Santiago", "Caminito del Rey", "Ruta del Cares", "Montserrat Trail"],
         correct: 1,
-        funFact: "Caminito del Rey — przygoda na wysokości! 🥾🇪🇸"
+        funFact: "Caminito del Rey — to byłaprzygoda! 🥾"
     },
     {
         question: "Co przestraszyło nas w kajaku w Hiszpanii?",
         answers: ["Fala", "Rekin", "Meduza", "Burza"],
         correct: 2,
-        funFact: "Meduza! Panika w kajaku! 🪼😱"
+        funFact: "Meduza! Panika! Donio Ratuj!🪼😱"
     },
     {
         question: "Gdzie był koncert Eda Sheerana, na który razem \"jechaliśmy\"?",
         answers: ["W Krakowie", "W Warszawie", "We Wrocławiu", "W Gdańsku"],
         correct: 2,
-        funFact: "Wrocław! Ed Sheeran dał czadu! 🎸🎤"
+        funFact: "Wrocław! Ed Sheeran dał czadu!(na parkingu tez XD) 🎸🎤"
     },
     {
         question: "Co jedliśmy we Wrocławiu przed koncertem Eda?",
         answers: ["Pizzę", "Kebaba", "Nic", "Makaron"],
         correct: 1,
-        funFact: "Kebab przed koncertem — tradycja! 🥙🎶"
+        funFact: "Kebab przed koncertem i to jaki! 🥙🎶"
     },
     {
         question: "Gdzie odwiedziliśmy żółte domy o dziwnych kształtach?",
@@ -157,13 +157,13 @@ const QUESTIONS_ONAS = [
         question: "Gdzie byliśmy pierwszy raz w saunie?",
         answers: ["W Polsce", "Na Słowacji", "W Turcji", "Na Cyprze"],
         correct: 2,
-        funFact: "Turcja — sauna w tureckim stylu! 🧖‍♀️🇹🇷"
+        funFact: "Turcja — na chwile ale tak! 🧖‍♀️🇹🇷"
     },
     {
         question: "Co jedliśmy po powrocie z sylwestra w 2026 roku?",
         answers: ["Kebaba", "Langosza", "Hot doga", "Pizzę"],
         correct: 1,
-        funFact: "Langosz — najlepsze jedzenie po imprezie! 🎆🥟"
+        funFact: "Langosz — taki wyczekany! 🎆🥟"
     },
     {
         question: "Czego NIE było w sushi, jakie razem zrobiliśmy?",

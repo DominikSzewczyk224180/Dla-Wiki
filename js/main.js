@@ -250,3 +250,57 @@ function resetProgress() {
         updateProgressUI();
     }
 }
+
+/* --- Scratch & Reveal Prizes --- */
+function revealPrize(num) {
+    const area = document.getElementById('scratch' + num);
+    const cover = document.getElementById('cover' + num);
+
+    if (area.classList.contains('revealed')) return;
+
+    // Animate scratch off
+    cover.classList.add('scratching');
+
+    // After scratch animation, show the prize
+    setTimeout(() => {
+        area.classList.add('revealed');
+        cover.style.display = 'none';
+
+        // Mini confetti burst
+        createMiniConfetti(area);
+    }, 800);
+}
+
+function createMiniConfetti(container) {
+    const chars = ['🎉', '✨', '💖', '🌸', '⭐', '💝', '🎀'];
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const c = document.createElement('span');
+            c.textContent = chars[Math.floor(Math.random() * chars.length)];
+            c.style.cssText = `
+                position: fixed;
+                top: ${container.getBoundingClientRect().top + 40}px;
+                left: ${container.getBoundingClientRect().left + Math.random() * container.offsetWidth}px;
+                font-size: ${0.8 + Math.random() * 1}rem;
+                pointer-events: none;
+                z-index: 999;
+                animation: miniConfetti ${1.5 + Math.random() * 1.5}s ease-out forwards;
+            `;
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 3000);
+        }, i * 50);
+    }
+
+    // Add keyframes if not exists
+    if (!document.getElementById('miniConfettiStyles')) {
+        const style = document.createElement('style');
+        style.id = 'miniConfettiStyles';
+        style.textContent = `
+            @keyframes miniConfetti {
+                0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-120px) translateX(${-40 + Math.random() * 80}px) scale(0.3) rotate(${360 + Math.random() * 360}deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}

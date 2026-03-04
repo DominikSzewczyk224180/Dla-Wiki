@@ -146,12 +146,77 @@
             <div class="prize-content">
                 <div class="prize-stars">⭐ 🌟 ⭐</div>
                 <h2 class="prize-title">Gratulacje! 🎉</h2>
-                <p class="prize-text">Przeszłaś wszystkie wyzwania! Oto Twoja nagroda:</p>
-                <div class="prize-qr" id="prizeQR">
-                    <!-- QR code will be placed here -->
-                    <img src="images/qr-code.png" alt="Kod QR do odbioru nagrody" class="prize-qr__image">
+                <p class="prize-text">Przeszłaś wszystkie wyzwania! Oto Twoje 3 nagrody — zdrap każdą żeby odkryć!</p>
+
+                <!-- Prize 3 (smallest, revealed first) -->
+                <div class="prize-card" id="prize3">
+                    <div class="prize-card__label">Nagroda 3 🎁</div>
+                    <div class="scratch-area" id="scratch3" onclick="revealPrize(3)">
+                        <div class="scratch-cover" id="cover3">
+                            <span class="scratch-text">ZDRAP MNIE! 💖</span>
+                            <div class="scratch-sparkles">✨✨✨</div>
+                        </div>
+                        <div class="scratch-reveal" id="reveal3">
+                            <img src="images/nagroda3.png" alt="Piłka do masażu" class="prize-img">
+                            <h3 class="prize-name">Piłka do masażu Roller Duoball</h3>
+                            <div class="prize-delivery">
+                                <span class="prize-delivery__icon">📦</span>
+                                <div class="prize-delivery__info">
+                                    <strong>Allegro One Box - AL012SG1</strong><br>
+                                    Czajki 5, 44-100 Gliwice<br>
+                                    <em>Na lewo od Apteki Dr Max</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="prize-hint">Zeskanuj kod QR, żeby odebrać paczkę 📦💝</p>
+
+                <!-- Prize 2 (medium) -->
+                <div class="prize-card" id="prize2">
+                    <div class="prize-card__label">Nagroda 2 🎁🎁</div>
+                    <div class="scratch-area" id="scratch2" onclick="revealPrize(2)">
+                        <div class="scratch-cover" id="cover2">
+                            <span class="scratch-text">ZDRAP MNIE! 💖</span>
+                            <div class="scratch-sparkles">✨✨✨</div>
+                        </div>
+                        <div class="scratch-reveal" id="reveal2">
+                            <img src="images/nagroda2.png" alt="Wałek do masażu" class="prize-img">
+                            <h3 class="prize-name">Wałek do masażu Roller Masażer Obrotowy</h3>
+                            <div class="prize-delivery">
+                                <span class="prize-delivery__icon">📦</span>
+                                <div class="prize-delivery__info">
+                                    <strong>Allegro One Box - AL012SG1</strong><br>
+                                    Czajki 5, 44-100 Gliwice<br>
+                                    <em>Na lewo od Apteki Dr Max</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prize 1 (best!) -->
+                <div class="prize-card" id="prize1">
+                    <div class="prize-card__label">Nagroda 1 🏆✨</div>
+                    <div class="scratch-area" id="scratch1" onclick="revealPrize(1)">
+                        <div class="scratch-cover" id="cover1">
+                            <span class="scratch-text">ZDRAP MNIE! 💖</span>
+                            <div class="scratch-sparkles">✨✨✨</div>
+                        </div>
+                        <div class="scratch-reveal" id="reveal1">
+                            <img src="images/nagroda1.png" alt="Roller fitness" class="prize-img">
+                            <h3 class="prize-name">Roller Fitness ACTIGET — wałek z wypustkami, różowy</h3>
+                            <div class="prize-delivery">
+                                <span class="prize-delivery__icon">📦</span>
+                                <div class="prize-delivery__info">
+                                    <strong>DPD</strong><br>
+                                    Czajki 5, 44-122 Gliwice
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="prize-hint">Zdrapuj od 3 do 1 — najlepsza nagroda na końcu! 🥰</p>
             </div>
         </div>
     </section>
