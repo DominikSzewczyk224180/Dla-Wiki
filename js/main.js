@@ -240,3 +240,13 @@ function initScrollAnimations() {
 /* --- Helper: Mark game as complete (called from game pages) --- */
 // Games will call: localStorage.setItem('womensday_progress', JSON.stringify([...completed, gameNumber]))
 // Then redirect back to index.html
+
+/* --- Reset All Progress --- */
+function resetProgress() {
+    if (confirm('Na pewno chcesz zresetować cały postęp? 🥺')) {
+        localStorage.removeItem('womensday_progress');
+        const prizeSection = document.getElementById('prizeSection');
+        if (prizeSection) prizeSection.classList.remove('visible');
+        updateProgressUI();
+    }
+}
