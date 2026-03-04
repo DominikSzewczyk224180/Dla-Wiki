@@ -52,8 +52,8 @@ const QUESTIONS = [
         category: "Geografia",
         question: "Jaka jest najdłuższa rzeka na świecie?",
         answers: ["Amazonka", "Nil", "Jangcy", "Missisipi"],
-        correct: 1,
-        funFact: "Nil — 6650 km, choć Amazonka ma więcej wody 💧"
+        correct: 0,
+        funFact: "Amazonka ma ok. 7000 km — największa na świecie! 🌊"
     },
     {
         category: "Geografia",
@@ -70,10 +70,10 @@ const QUESTIONS = [
     },
     {
         category: "Geografia",
-        question: "Jak nazywa się najgłębsze jezioro na świecie?",
-        answers: ["Bajkał", "Titicaca", "Tanganika", "Kaspijskie"],
-        correct: 0,
-        funFact: "Bajkał ma 1642 m głębokości! 🌊"
+        question: "Na jakim kontynencie leży Egipt?",
+        answers: ["Azja", "Europa", "Afryka", "Ameryka Pd."],
+        correct: 2,
+        funFact: "Afryka — choć Synaj jest w Azji! 🌍"
     },
     {
         category: "Geografia",
@@ -90,9 +90,10 @@ const QUESTIONS = [
     },
     {
         category: "Geografia",
-        question: "Które miasto jest stolicą Kanady?",
-        answers: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
-        correct: 2
+        question: "Jaki kraj ma kształt buta na mapie?",
+        answers: ["Hiszpania", "Grecja", "Włochy", "Portugalia"],
+        correct: 2,
+        funFact: "Włoski but — nie da się zapomnieć! 🥾🇮🇹"
     },
     {
         category: "Geografia",
@@ -160,9 +161,10 @@ const QUESTIONS = [
     },
     {
         category: "Podróże ✈️",
-        question: "Który kraj NIE leży w Azji Południowo-Wschodniej?",
-        answers: ["Wietnam", "Tajlandia", "Indie", "Kambodża"],
-        correct: 2
+        question: "W jakim kraju jest Angkor Wat?",
+        answers: ["Wietnam", "Tajlandia", "Kambodża", "Laos"],
+        correct: 2,
+        funFact: "Kambodża — może kiedyś odwiedzimy! 🛕"
     },
     // ===== ARCHITEKTURA =====
     {
@@ -208,10 +210,10 @@ const QUESTIONS = [
     },
     {
         category: "Architektura 🏛️",
-        question: "Który architekt zaprojektował Centrum Pompidou w Paryżu?",
-        answers: ["Renzo Piano i Richard Rogers", "Norman Foster", "Frank Gehry", "I.M. Pei"],
-        correct: 0,
-        funFact: "Instalacje techniczne na zewnątrz budynku — szok w 1977 roku! 🎨"
+        question: "Z jakiego materiału budowano piramidy w Gizie?",
+        answers: ["Cegła", "Wapień", "Granit", "Marmur"],
+        correct: 1,
+        funFact: "Bloki wapienne — każdy waży średnio 2,5 tony! 🏗️"
     },
     {
         category: "Architektura 🏛️",
@@ -234,16 +236,17 @@ const QUESTIONS = [
     },
     {
         category: "Architektura 🏛️",
-        question: "Kto zaprojektował muzeum Guggenheima w Bilbao?",
-        answers: ["Zaha Hadid", "Frank Gehry", "Tadao Ando", "Rem Koolhaas"],
+        question: "Jak nazywa się słynna krzywa wieża we Włoszech?",
+        answers: ["Wieża w Bolonii", "Krzywa Wieża w Pizie", "Wieża w Wenecji", "Wieża w Mediolanie"],
         correct: 1,
-        funFact: "Gehry pokrył go tytanem — budynek wygląda jak rzeźba! 🏗️"
+        funFact: "Przechyla się o prawie 4 stopnie! 🏗️"
     },
     {
         category: "Architektura 🏛️",
-        question: "Jak nazywa się poziomy element konstrukcyjny łączący słupy?",
-        answers: ["Rygiel", "Krokiew", "Płatew", "Murłata"],
-        correct: 0
+        question: "Jak nazywa się górna część kolumny?",
+        answers: ["Baza", "Trzon", "Kapitel", "Fryz"],
+        correct: 2,
+        funFact: "Kapitel — ozdoba na szczycie kolumny! 🏛️"
     },
     {
         category: "Architektura 🏛️",
@@ -254,9 +257,10 @@ const QUESTIONS = [
     },
     {
         category: "Architektura 🏛️",
-        question: "Z jakiego materiału zbudowana jest opera w Sydney?",
-        answers: ["Szkło i stal", "Żelbetowe skorupy z ceramiką", "Marmur", "Drewno i beton"],
-        correct: 1
+        question: "W jakim mieście stoi Opera z charakterystycznymi \"żaglami\"?",
+        answers: ["Londyn", "Nowy Jork", "Sydney", "Tokio"],
+        correct: 2,
+        funFact: "Opera w Sydney — jedna z najsłynniejszych budowli świata! 🎭"
     },
     // ===== MATEMATYKA =====
     {
@@ -510,16 +514,17 @@ const QUESTIONS = [
     },
     {
         category: "Wiedza ogólna",
-        question: "Ile razy w ciągu doby wskazówki zegara tworzą kąt prosty?",
-        answers: ["2", "4", "24", "44"],
-        correct: 3,
-        funFact: "44 razy! To sprytna zagadka zegarowa ⏰"
+        question: "Ile kości ma ludzka dłoń?",
+        answers: ["14", "19", "27", "33"],
+        correct: 2,
+        funFact: "27 kości — aż ćwierć wszystkich kości ciała! 🖐️"
     },
     {
         category: "Wiedza ogólna",
-        question: "Jaką grupę krwi nazywa się \"uniwersalnym dawcą\"?",
-        answers: ["A Rh+", "B Rh-", "0 Rh-", "AB Rh+"],
-        correct: 2
+        question: "Jak nazywa się czerwona planeta?",
+        answers: ["Wenus", "Mars", "Jowisz", "Saturn"],
+        correct: 1,
+        funFact: "Mars — może kiedyś tam polecisz! 🔴"
     },
     {
         category: "Wiedza ogólna",

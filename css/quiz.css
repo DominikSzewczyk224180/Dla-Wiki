@@ -366,20 +366,29 @@
 
 /* --- Fun Fact --- */
 .quiz-fun-fact {
-    min-height: 2rem;
+    min-height: 3rem;
     text-align: center;
-    font-size: 0.85rem;
-    color: var(--rose-gold);
-    font-style: italic;
-    font-family: var(--font-script);
-    font-weight: 500;
-    padding: 0.5rem;
-    animation: fadeIn 0.5s ease;
+    font-size: 1.15rem;
+    color: var(--pink-600);
+    font-weight: 600;
+    font-family: var(--font-body);
+    padding: 0.8rem 1rem;
+    margin-top: 0.5rem;
+    background: var(--pink-100);
+    border-radius: var(--radius-sm);
+    animation: funFactIn 0.4s ease-out;
+    line-height: 1.5;
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+.quiz-fun-fact:empty {
+    background: transparent;
+    min-height: 0;
+    padding: 0;
+}
+
+@keyframes funFactIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* =============================================

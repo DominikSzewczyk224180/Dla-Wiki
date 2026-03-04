@@ -147,7 +147,7 @@ function timeUp() {
     // Show fun fact
     showFunFact(q, false);
 
-    setTimeout(nextQuestion, 2000);
+    setTimeout(nextQuestion, 3500);
 }
 
 /* --- Handle Answer --- */
@@ -179,7 +179,7 @@ function handleAnswer(btn, origIdx, q) {
     // Show fun fact
     showFunFact(q, isCorrect);
 
-    setTimeout(nextQuestion, 2000);
+    setTimeout(nextQuestion, 3500);
 }
 
 function showFunFact(q, wasCorrect) {
@@ -253,9 +253,16 @@ function showResults() {
         ringFill.style.strokeDashoffset = offset;
     }, 200);
 
-    // Mark game as complete (need at least 50% to pass)
-    if (percent >= 0.5) {
+    // Mark game as complete based on difficulty threshold
+    const thresholds = { easy: 0.6, medium: 0.8, hard: 0.9 };
+    const threshold = thresholds[currentDifficulty];
+    
+    if (percent >= threshold) {
         markGameComplete(1);
+        document.getElementById('resultsSubtitle').textContent = 'Zaliczone! Oto Twój wynik:';
+    } else {
+        const needed = Math.ceil(threshold * TOTAL_QUESTIONS);
+        document.getElementById('resultsSubtitle').textContent = `Potrzebujesz ${needed}/${TOTAL_QUESTIONS} poprawnych na tym poziomie. Spróbuj jeszcze raz!`;
     }
 }
 
