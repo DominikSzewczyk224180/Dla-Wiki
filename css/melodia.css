@@ -380,6 +380,25 @@
     border-color: var(--pink-400);
 }
 
+.mel-btn-end {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose-gold), var(--pink-700));
+    padding: 0.65em 1.8em;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(183, 110, 121, 0.3);
+    transition: all 0.3s ease;
+    animation: melIn 0.4s ease-out;
+}
+.mel-btn-end:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(183, 110, 121, 0.4);
+}
+
 /* --- Confirm --- */
 .mel-confirm {
     background: var(--pink-100);

@@ -69,17 +69,17 @@ const MELODIA_SONGS = [
     },
     {
         title: "Chyba że z tobą",
-        artist: "Sanah",
+        artist: "Modelki",
         acceptedTitles: ["chyba ze z toba", "chyba że z tobą"],
-        acceptedArtists: ["sanah"],
+        acceptedArtists: ["modelki"],
         youtubeId: "oKa9tnfZwP0",
         startAt: 0
     },
     {
         title: "Santa Cruz",
-        artist: "Sanah",
+        artist: "Modelki",
         acceptedTitles: ["santa cruz", "santacruz", "santa cruze"],
-        acceptedArtists: ["sanah"],
+        acceptedArtists: ["modelki"],
         youtubeId: "rqAOKd7Qf-8",
         startAt: 0
     },

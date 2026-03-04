@@ -84,7 +84,7 @@ function buildSlots() {
 
 /* --- Select a song --- */
 function selectSong(i) {
-    if (songResults[i].done || timeLeft <= 0) return;
+    if (songResults[i].done) return;
 
     destroyPlayer();
     currentSongIndex = i;
@@ -99,8 +99,10 @@ function selectSong(i) {
     document.getElementById('inputTitle').value = '';
     document.getElementById('inputArtist').value = '';
 
-    // Create YouTube player via IFrame API
-    createPlayer(gameSongs[i]);
+    // Create YouTube player via IFrame API (only if time left)
+    if (timeLeft > 0) {
+        createPlayer(gameSongs[i]);
+    }
 
     document.getElementById('inputTitle').focus();
 }
@@ -203,8 +205,17 @@ function startTimer() {
         if (timeLeft <= 0) {
             timeLeft = 0;
             updateUI();
-            destroyPlayer();
-            endGame();
+            // Stop music but DON'T end game — let user type remaining answers
+            if (ytPlayer) {
+                try { ytPlayer.pauseVideo(); } catch(e) {}
+            }
+            musicPlaying = false;
+            clearTimer();
+            document.getElementById('timerLabel').textContent = '⏰ Czas minął! Wpisuj odpowiedzi z pamięci';
+            document.getElementById('coverIcon').textContent = '🚫';
+            document.getElementById('coverText').textContent = 'Czas się skończył';
+            // Show end game button
+            document.getElementById('endGameBtn').style.display = 'inline-block';
         }
     }, 1000);
 }
@@ -227,7 +238,7 @@ function updateUI() {
 
 /* --- Submit --- */
 function submitAnswer() {
-    if (currentSongIndex < 0 || timeLeft <= 0) return;
+    if (currentSongIndex < 0) return;
     if (songResults[currentSongIndex].done) return;
 
     const song = gameSongs[currentSongIndex];
@@ -359,7 +370,7 @@ function processAnswer(titleOk, artistOk) {
 /* --- Skip --- */
 function skipSong() {
     if (currentSongIndex < 0 || songResults[currentSongIndex].done) return;
-    destroyPlayer();
+    if (timeLeft > 0) destroyPlayer();
     const start = currentSongIndex;
     let next = (start + 1) % TOTAL_SONGS;
     while (next !== start && songResults[next].done) next = (next + 1) % TOTAL_SONGS;
