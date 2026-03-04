@@ -1,32 +1,31 @@
 /* =============================================
    MEMORY GAME LOGIC
    
-   Images go in: images/memory/
-   Name them however you want!
-   Just list all filenames below (with extension):
+   INSTRUKCJA:
+   1. Wrzuć zdjęcia do folderu: images/memory/
+   2. Wpisz nazwy plików poniżej (z rozszerzeniem!)
+   3. Potrzebujesz minimum:
+      - 4 zdjęcia na łatwy
+      - 8 zdjęć na średni  
+      - 16 zdjęć na trudny
+   
+   Przykład: jeśli masz pliki "plaza.jpg" i "kotek.png"
+   w folderze images/memory/, wpisz:
+   "plaza.jpg", "kotek.png"
    ============================================= */
 
 const MEMORY_IMAGES = [
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.jpg",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "9.jpg",
-    "10.jpg",
-    "11.jpg",
-    "12.jpg",
-    "13.jpg",
-    "14.jpg",
-    "15.jpg",
-    "16.jpg",
-    // Dodaj swoje pliki tutaj, np:
-    // "wakacje.jpg",
-    // "my-na-plazy.png",
-    // "kotek.webp",
+    "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg",
+    "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg", "14.jpeg",
+    "15.jpeg", "16.jpeg", "17.jpeg", "18.jpeg", "19.jpeg", "20.jpeg", "21.jpeg",
+    "22.jpeg", "23.jpeg", "24.jpeg", "25.jpeg", "26.jpeg", "27.jpeg", "28.jpeg",
+    "29.jpeg", "30.jpeg", "31.jpeg", "32.jpeg", "33.jpeg", "34.jpeg", "35.jpeg",
+    "36.jpeg", "37.jpeg", "38.jpeg", "39.jpeg", "40.jpeg", "41.jpeg", "42.jpeg",
+    "43.jpeg", "44.jpeg", "45.jpeg", "46.jpeg", "47.jpeg", "48.jpeg", "49.jpeg",
+    "50.jpeg", "51.jpeg", "52.jpeg", "53.jpeg", "54.jpeg", "55.jpeg", "56.jpeg",
+    "57.jpeg", "58.jpeg", "59.jpeg", "60.jpeg", "61.jpeg", "62.jpeg", "63.jpeg",
+    "64.jpeg", "65.jpeg", "66.jpeg", "67.jpeg", "68.jpeg", "69.jpeg", "70.jpeg",
+    "71.jpeg",
 ];
 
 let difficulty = 'easy';
@@ -96,8 +95,9 @@ function buildGrid() {
 
         card.innerHTML = `
             <div class="mem-card__inner">
-                <div class="mem-card__front">
-                    <img src="../images/memory/${filename}" alt="Karta">
+                <div class="mem-card__front" id="front-${index}">
+                    <img src="../images/memory/${filename}" alt="Karta"
+                         onerror="this.style.display='none'; this.parentElement.classList.add('mem-card__placeholder');">
                 </div>
                 <div class="mem-card__back">
                     <span class="mem-card__back-pattern">💖</span>
