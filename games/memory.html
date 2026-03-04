@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory 🃏</title>
+    <title>Memory</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/memory.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,22 +16,22 @@
     <div class="mem-screen active" id="screenDifficulty">
         <div class="mem-box mem-box--start">
             <a href="../index.html" class="mem-back">← Powrót</a>
-            <div class="mem-start-icon">🃏</div>
+            <div class="mem-start-icon">◆</div>
             <h1 class="mem-start-title">Memory</h1>
             <p class="mem-start-desc">Znajdź wszystkie pary zdjęć! Odwracaj po dwie karty i zapamiętuj gdzie co jest.</p>
             <div class="mem-diff-grid">
                 <button class="mem-diff-card" onclick="startMemory('easy')">
-                    <span class="mem-diff-card__emoji">🌸</span>
+                    <span class="mem-diff-card__emoji">❋</span>
                     <span class="mem-diff-card__name">Łatwy</span>
                     <span class="mem-diff-card__desc">4 pary (8 kart)</span>
                 </button>
                 <button class="mem-diff-card" onclick="startMemory('medium')">
-                    <span class="mem-diff-card__emoji">🔥</span>
+                    <span class="mem-diff-card__emoji">✦</span>
                     <span class="mem-diff-card__name">Średni</span>
                     <span class="mem-diff-card__desc">8 par (16 kart)</span>
                 </button>
                 <button class="mem-diff-card" onclick="startMemory('hard')">
-                    <span class="mem-diff-card__emoji">💀</span>
+                    <span class="mem-diff-card__emoji">★</span>
                     <span class="mem-diff-card__name">Trudny</span>
                     <span class="mem-diff-card__desc">16 par (32 karty)</span>
                 </button>
@@ -65,22 +65,22 @@
     <!-- ===== RESULTS ===== -->
     <div class="mem-screen" id="screenResults">
         <div class="mem-box mem-box--results">
-            <div class="mem-results-icon">🎉</div>
+            <div class="mem-results-icon">★</div>
             <h2 class="mem-results-title">Brawo!</h2>
             <p class="mem-results-sub" id="memResultsSub"></p>
             <div class="mem-results-stats">
                 <div class="mem-stat">
-                    <span class="mem-stat__icon">🃏</span>
+                    <span class="mem-stat__icon">◆</span>
                     <span class="mem-stat__value" id="statPairs">0</span>
                     <span class="mem-stat__label">Par</span>
                 </div>
                 <div class="mem-stat">
-                    <span class="mem-stat__icon">👆</span>
+                    <span class="mem-stat__icon">↑</span>
                     <span class="mem-stat__value" id="statMoves">0</span>
                     <span class="mem-stat__label">Ruchów</span>
                 </div>
                 <div class="mem-stat">
-                    <span class="mem-stat__icon">⏱️</span>
+                    <span class="mem-stat__icon">◷</span>
                     <span class="mem-stat__value" id="statTime">0:00</span>
                     <span class="mem-stat__label">Czas</span>
                 </div>
@@ -96,7 +96,7 @@
     <script>
         // Petals
         const ctr = document.getElementById('petalsContainer');
-        const emj = ['🌸','🩷','💗','🪷','✿'];
+        const emj = ['❋','✾','❁','✿','❀'];
         setInterval(() => {
             const p = document.createElement('span');
             p.classList.add('petal');

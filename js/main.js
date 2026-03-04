@@ -39,7 +39,7 @@ function initNameHover() {
 /* --- Floating Petals --- */
 function initPetals() {
     const container = document.getElementById('petalsContainer');
-    const petalEmojis = ['🌸', '🩷', '💗', '🪷', '✿', '❀', '🩰'];
+    const petalEmojis = ['❋', '✾', '❁', '✿', '❀', '♡', '·'];
     const PETAL_COUNT = 20;
 
     for (let i = 0; i < PETAL_COUNT; i++) {
@@ -172,7 +172,7 @@ function createConfetti() {
     const container = document.getElementById('prizeConfetti');
     if (!container) return;
 
-    const confettiChars = ['🎉', '🎊', '✨', '💖', '🌸', '⭐', '💝', '🎀'];
+    const confettiChars = ['✧', '★', '❋', '♡', '❀', '·', '✦', '♥'];
     const count = 40;
 
     for (let i = 0; i < count; i++) {
@@ -246,7 +246,7 @@ function initScrollAnimations() {
 
 /* --- Reset All Progress --- */
 function resetProgress() {
-    if (confirm('Na pewno chcesz zresetować cały postęp? 🥺')) {
+    if (confirm('Na pewno chcesz zresetować cały postęp?')) {
         localStorage.removeItem('womensday_progress');
         const prizeSection = document.getElementById('prizeSection');
         if (prizeSection) prizeSection.classList.remove('visible');
@@ -340,10 +340,10 @@ function drawCover(ctx, w, h) {
     ctx.font = 'bold ' + Math.min(w * 0.08, 20) + 'px Quicksand, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('✨ ZDRAP MNIE! ✨', w / 2, h / 2 - 10);
+    ctx.fillText('ZDRAP MNIE!', w / 2, h / 2 - 10);
     ctx.font = Math.min(w * 0.06, 14) + 'px Quicksand, sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.6)';
-    ctx.fillText('Przesuń palcem lub myszką', w / 2, h / 2 + 15);
+    ctx.fillText('przesuń palcem lub myszką', w / 2, h / 2 + 15);
 }
 
 function eraseScratch(ctx, x, y) {
@@ -400,7 +400,7 @@ function showQR(id) {
         btn.textContent = '🔽 Schowaj kod QR';
     } else {
         popup.style.display = 'none';
-        btn.textContent = '📦 Kliknij aby odebrać';
+        btn.textContent = 'Kliknij aby odebrać ›';
     }
 }
 
@@ -425,7 +425,7 @@ function revealPrize(num) {
 }
 
 function createMiniConfetti(container) {
-    const chars = ['🎉', '✨', '💖', '🌸', '⭐', '💝', '🎀'];
+    const chars = ['✧', '★', '❋', '♡', '❀', '·', '✦'];
     for (let i = 0; i < 15; i++) {
         setTimeout(() => {
             const c = document.createElement('span');

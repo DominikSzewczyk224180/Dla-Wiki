@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz o Nas 💕</title>
+    <title>Quiz o Nas</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/quiz-o-nas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +16,10 @@
     <div class="qon-screen active" id="screenStart">
         <div class="qon-box qon-box--start">
             <a href="../index.html" class="qon-back">← Powrót</a>
-            <div class="qon-start-icon">💕</div>
+            <div class="qon-start-icon">♡</div>
             <h1 class="qon-start-title">Quiz o Nas</h1>
             <p class="qon-start-desc">Ile pamiętasz z naszych wspólnych chwil?<br>10 losowych pytań — sprawdź się!</p>
-            <button class="qon-btn-primary qon-btn-big" onclick="startQuizONas()">Zaczynamy! 💖</button>
+            <button class="qon-btn-primary qon-btn-big" onclick="startQuizONas()">Zaczynamy!</button>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         <div class="qon-box">
             <div class="qon-hud">
                 <span class="qon-hud__q" id="qCounter">1 / 10</span>
-                <span class="qon-hud__score">💖 <span id="qScore">0</span></span>
+                <span class="qon-hud__score">♡ <span id="qScore">0</span></span>
             </div>
             <div class="qon-progress">
                 <div class="qon-progress__fill" id="qProgressFill"></div>
@@ -42,7 +42,7 @@
     <!-- ===== RESULTS ===== -->
     <div class="qon-screen" id="screenResults">
         <div class="qon-box qon-box--results">
-            <div class="qon-results-icon" id="rIcon">💕</div>
+            <div class="qon-results-icon" id="rIcon">♡</div>
             <h2 class="qon-results-title" id="rTitle">Wow!</h2>
             <p class="qon-results-sub" id="rSub"></p>
             <div class="qon-results-big">
@@ -59,7 +59,7 @@
     <script src="../js/quiz-o-nas.js"></script>
     <script>
         const ctr = document.getElementById('petalsContainer');
-        const emj = ['🌸','🩷','💗','🪷','✿'];
+        const emj = ['❋','✾','❁','✿','❀'];
         setInterval(() => {
             const p = document.createElement('span');
             p.classList.add('petal');

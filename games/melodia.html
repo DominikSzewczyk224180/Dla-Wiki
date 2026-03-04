@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaka to Melodia? 🎵</title>
+    <title>Jaka to Melodia?</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/melodia.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,38 +16,38 @@
     <div class="mel-screen active" id="screenDifficulty">
         <div class="mel-box mel-box--start">
             <a href="../index.html" class="mel-back">← Powrót</a>
-            <div class="mel-start-icon">🎵</div>
+            <div class="mel-start-icon">♪</div>
             <h1 class="mel-start-title">Jaka to Melodia?</h1>
             <p class="mel-start-desc">
                 Posłuchaj 7 piosenek i zgadnij tytuł oraz wykonawcę!
             </p>
             <div class="mel-rules">
                 <div class="mel-rule">
-                    <span class="mel-rule__icon">🎯</span>
+                    <span class="mel-rule__icon">›</span>
                     <span class="mel-rule__text"><strong>1 punkt</strong> za tytuł + <strong>1 punkt</strong> za wykonawcę = max 14 pkt</span>
                 </div>
                 <div class="mel-rule">
-                    <span class="mel-rule__icon">⏱️</span>
+                    <span class="mel-rule__icon">›</span>
                     <span class="mel-rule__text">Czas leci <strong>tylko gdy gra muzyka</strong> — pauzuj i myśl ile chcesz!</span>
                 </div>
                 <div class="mel-rule">
-                    <span class="mel-rule__icon">💡</span>
+                    <span class="mel-rule__icon">›</span>
                     <span class="mel-rule__text">Nie musisz wpisać idealnie — wystarczy zbliżony tekst</span>
                 </div>
             </div>
             <div class="mel-diff-grid">
                 <button class="mel-diff-card" onclick="startMelodia('easy')">
-                    <span class="mel-diff-card__emoji">🌸</span>
+                    <span class="mel-diff-card__emoji">❋</span>
                     <span class="mel-diff-card__name">Łatwy</span>
                     <span class="mel-diff-card__desc">21 sekund · potrzeba 10/14 pkt</span>
                 </button>
                 <button class="mel-diff-card" onclick="startMelodia('medium')">
-                    <span class="mel-diff-card__emoji">🔥</span>
+                    <span class="mel-diff-card__emoji">✦</span>
                     <span class="mel-diff-card__name">Średni</span>
                     <span class="mel-diff-card__desc">14 sekund · potrzeba 12/14 pkt</span>
                 </button>
                 <button class="mel-diff-card" onclick="startMelodia('hard')">
-                    <span class="mel-diff-card__emoji">💀</span>
+                    <span class="mel-diff-card__emoji">★</span>
                     <span class="mel-diff-card__name">Trudny</span>
                     <span class="mel-diff-card__desc">7 sekund · potrzeba 13/14 pkt</span>
                 </button>
@@ -96,7 +96,7 @@
                 <div class="mel-actions">
                     <button class="mel-btn-primary" onclick="submitAnswer()">✓ Zatwierdź</button>
                     <button class="mel-btn-secondary" onclick="skipSong()">→ Pomiń</button>
-                    <button class="mel-btn-end" id="endGameBtn" onclick="endGame()" style="display:none;">🏁 Zakończ grę</button>
+                    <button class="mel-btn-end" id="endGameBtn" onclick="endGame()" style="display:none;">■ Zakończ grę</button>
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
     <!-- ===== RESULTS ===== -->
     <div class="mel-screen" id="screenResults">
         <div class="mel-box mel-box--results">
-            <div class="mel-results-icon" id="melResultsIcon">🎉</div>
+            <div class="mel-results-icon" id="melResultsIcon">★</div>
             <h2 class="mel-results-title" id="melResultsTitle">Brawo!</h2>
             <p class="mel-results-sub" id="melResultsSub"></p>
             <div class="mel-results-big">
@@ -134,7 +134,7 @@
     <script>
         // Petals
         const ctr = document.getElementById('petalsContainer');
-        const emj = ['🌸','🩷','💗','🪷','✿'];
+        const emj = ['❋','✾','❁','✿','❀'];
         setInterval(() => {
             const p = document.createElement('span');
             p.classList.add('petal');

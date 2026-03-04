@@ -187,7 +187,7 @@ function showFunFact(q, wasCorrect) {
     if (q.funFact) {
         el.textContent = q.funFact;
     } else if (wasCorrect) {
-        const phrases = ["Brawo! 💪", "Dobrze! ✨", "Tak trzymaj! 🌟", "Super! 🎉", "Wow, znasz się! 💖"];
+        const phrases = ['Brawo!', 'Dobrze!', 'Tak trzymaj!', 'Super!', 'Znasz się!'];
         el.textContent = phrases[Math.floor(Math.random() * phrases.length)];
     } else {
         el.textContent = `Poprawna odpowiedź: ${q.answers[q.correct]}`;
@@ -220,16 +220,16 @@ function showResults() {
     const title = document.getElementById('resultsTitle');
 
     if (percent >= 0.9) {
-        icon.textContent = '🏆';
+        icon.textContent = '★';
         title.textContent = 'Geniusz!';
     } else if (percent >= 0.7) {
-        icon.textContent = '🎉';
+        icon.textContent = '★';
         title.textContent = 'Świetnie!';
     } else if (percent >= 0.5) {
-        icon.textContent = '😊';
+        icon.textContent = '~';
         title.textContent = 'Nieźle!';
     } else {
-        icon.textContent = '💪';
+        icon.textContent = '♡';
         title.textContent = 'Następnym razem lepiej!';
     }
 

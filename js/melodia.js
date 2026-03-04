@@ -119,8 +119,8 @@ function createPlayer(song) {
     wrapper.appendChild(div);
 
     // Reset cover
-    document.getElementById('coverIcon').textContent = '▶️';
-    document.getElementById('coverText').textContent = 'Kliknij żeby odtworzyć';
+    document.getElementById('coverIcon').textContent = '▶';
+    document.getElementById('coverText').textContent = 'kliknij żeby odtworzyć';
 
     function init() {
         ytPlayer = new YT.Player('ytPlayerDiv', {
@@ -157,17 +157,17 @@ function onYTState(e) {
     if (e.data === YT.PlayerState.PLAYING) {
         musicPlaying = true;
         startTimer();
-        document.getElementById('timerLabel').textContent = '🔊 Czas leci!';
-        document.getElementById('coverIcon').textContent = '⏸️';
-        document.getElementById('coverText').textContent = 'Kliknij żeby zatrzymać';
+        document.getElementById('timerLabel').textContent = '► czas leci!';
+        document.getElementById('coverIcon').textContent = '‖';
+        document.getElementById('coverText').textContent = 'kliknij żeby zatrzymać';
     } else {
         musicPlaying = false;
         clearTimer();
         if (timeLeft > 0) {
-            document.getElementById('timerLabel').textContent = '⏸️ Czas zatrzymany — myśl!';
+            document.getElementById('timerLabel').textContent = '‖ pauza — myśl spokojnie';
         }
-        document.getElementById('coverIcon').textContent = '▶️';
-        document.getElementById('coverText').textContent = 'Kliknij żeby odtworzyć';
+        document.getElementById('coverIcon').textContent = '▶';
+        document.getElementById('coverText').textContent = 'kliknij żeby odtworzyć';
     }
 }
 
@@ -211,9 +211,9 @@ function startTimer() {
             }
             musicPlaying = false;
             clearTimer();
-            document.getElementById('timerLabel').textContent = '⏰ Czas minął! Wpisuj odpowiedzi z pamięci';
-            document.getElementById('coverIcon').textContent = '🚫';
-            document.getElementById('coverText').textContent = 'Czas się skończył';
+            document.getElementById('timerLabel').textContent = 'Czas minął — wpisuj z pamięci!';
+            document.getElementById('coverIcon').textContent = '—';
+            document.getElementById('coverText').textContent = 'czas się skończył';
             // Show end game button
             document.getElementById('endGameBtn').style.display = 'inline-block';
         }
@@ -352,13 +352,13 @@ function processAnswer(titleOk, artistOk) {
     const slot = document.getElementById('slot' + i);
     if (titleOk && artistOk) {
         slot.classList.add('correct');
-        slot.querySelector('.mel-song-slot__status').textContent = '✅';
+        slot.querySelector('.mel-song-slot__status').textContent = '✓';
     } else if (titleOk || artistOk) {
         slot.classList.add('partial');
-        slot.querySelector('.mel-song-slot__status').textContent = '🟡';
+        slot.querySelector('.mel-song-slot__status').textContent = '~';
     } else {
         slot.classList.add('wrong');
-        slot.querySelector('.mel-song-slot__status').textContent = '❌';
+        slot.querySelector('.mel-song-slot__status').textContent = '✗';
     }
     slot.querySelector('.mel-song-slot__info').textContent = `${song.title} — ${song.artist}`;
 
@@ -386,7 +386,7 @@ function endGame() {
             r.done = true;
             const slot = document.getElementById('slot' + i);
             slot.classList.add('wrong');
-            slot.querySelector('.mel-song-slot__status').textContent = '⏰';
+            slot.querySelector('.mel-song-slot__status').textContent = '—';
             slot.querySelector('.mel-song-slot__info').textContent = `${gameSongs[i].title} — ${gameSongs[i].artist}`;
         }
     });
@@ -398,12 +398,12 @@ function endGame() {
     const sub = document.getElementById('melResultsSub');
 
     if (score >= passThreshold) {
-        icon.textContent = '🏆';
+        icon.textContent = '★';
         title.textContent = 'Brawo, mistrzyni melodii!';
         sub.textContent = `Zaliczone! ${score} / ${MAX_POINTS} punktów`;
         saveProgress(3);
     } else {
-        icon.textContent = '🎵';
+        icon.textContent = '♪';
         title.textContent = 'Prawie!';
         sub.textContent = `${score} / ${MAX_POINTS} pkt — potrzeba ${passThreshold}. Spróbuj jeszcze raz!`;
     }
@@ -415,10 +415,10 @@ function endGame() {
     gameSongs.forEach((song, i) => {
         const r = songResults[i];
         const div = document.createElement('div');
-        let ic = '❌', cls = 'wrong', det = '0 pkt';
-        if (r.title && r.artist) { ic = '✅'; cls = 'correct'; det = '+2 pkt'; }
-        else if (r.title) { ic = '🟡'; cls = 'partial'; det = '+1 (tytuł)'; }
-        else if (r.artist) { ic = '🟡'; cls = 'partial'; det = '+1 (wykonawca)'; }
+        let ic = '✗', cls = 'wrong', det = '0 pkt';
+        if (r.title && r.artist) { ic = '✓'; cls = 'correct'; det = '+2 pkt'; }
+        else if (r.title) { ic = '~'; cls = 'partial'; det = '+1 (tytuł)'; }
+        else if (r.artist) { ic = '~'; cls = 'partial'; det = '+1 (wykonawca)'; }
         div.className = 'mel-result-row ' + cls;
         div.innerHTML = `<span class="mel-result-row__icon">${ic}</span>
             <span class="mel-result-row__text"><strong>${song.title}</strong> — ${song.artist}
