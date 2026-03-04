@@ -9,7 +9,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["ordinary"],
         acceptedArtists: ["alex warren", "warren", "alex"],
         youtubeId: "u2ah9tWTkmk",
-        startAt: 30
+        startAt: 0
     },
     {
         title: "Fever Dream",
@@ -17,7 +17,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["fever dream"],
         acceptedArtists: ["alex warren", "warren", "alex"],
         youtubeId: "hkUSnrHQJHg",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "W kilometrach",
@@ -25,7 +25,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["w kilometrach", "kilometrach", "kilometry"],
         acceptedArtists: ["dawid podsiadlo", "podsiadlo", "dawid", "kasia sochacka", "sochacka", "dawid podsiadło", "podsiadło"],
         youtubeId: "6tGwscXNd3Y",
-        startAt: 30
+        startAt: 0
     },
     {
         title: "Kiss Cam",
@@ -33,7 +33,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["kiss cam", "kisscam"],
         acceptedArtists: ["mata"],
         youtubeId: "z9HsSzoRT1Y",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Up Up Up",
@@ -41,7 +41,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["up up up", "up up", "up"],
         acceptedArtists: ["mata"],
         youtubeId: "Z5Qv3WJqR4w",
-        startAt: 25
+        startAt: 0
     },
     {
         title: "1 na 100",
@@ -57,7 +57,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["azizam"],
         acceptedArtists: ["ed sheeran", "sheeran", "ed", "edd sheeran", "edd"],
         youtubeId: "q_48vyHWls4",
-        startAt: 25
+        startAt: 0
     },
     {
         title: "Bad Habits",
@@ -65,7 +65,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["bad habits", "bad habbits"],
         acceptedArtists: ["ed sheeran", "sheeran", "ed", "edd sheeran", "edd"],
         youtubeId: "HeOpRzcqKrE",
-        startAt: 30
+        startAt: 0
     },
     {
         title: "Chyba że z tobą",
@@ -73,7 +73,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["chyba ze z toba", "chyba że z tobą"],
         acceptedArtists: ["sanah"],
         youtubeId: "oKa9tnfZwP0",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Santa Cruz",
@@ -81,7 +81,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["santa cruz", "santacruz", "santa cruze"],
         acceptedArtists: ["sanah"],
         youtubeId: "rqAOKd7Qf-8",
-        startAt: 25
+        startAt: 0
     },
     {
         title: "Przester",
@@ -89,7 +89,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["przester"],
         acceptedArtists: ["young leosia", "leosia", "bambi", "young leosia bambi", "leosia bambi"],
         youtubeId: "IVjtPjqjZWs",
-        startAt: 15
+        startAt: 0
     },
     {
         title: "BFF",
@@ -97,7 +97,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["bff"],
         acceptedArtists: ["young leosia", "leosia", "bambi", "young leosia bambi", "leosia bambi"],
         youtubeId: "U_FirAt6UKg",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Nudy",
@@ -105,7 +105,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["nudy"],
         acceptedArtists: ["vito bambino", "vito", "bambino"],
         youtubeId: "KSX_CntKgjI",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Etna",
@@ -113,7 +113,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["etna"],
         acceptedArtists: ["vito bambino", "vito", "bambino"],
         youtubeId: "IfrH3qTr71w",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Taxi",
@@ -121,7 +121,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["taxi"],
         acceptedArtists: ["kizo"],
         youtubeId: "gtdjggvaqsg",
-        startAt: 15
+        startAt: 0
     },
     {
         title: "100 BPM",
@@ -129,7 +129,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["100 bpm", "100bpm", "sto bpm"],
         acceptedArtists: ["kizo"],
         youtubeId: "w4k_6tUw2mQ",
-        startAt: 15
+        startAt: 0
     },
     {
         title: "12 to 12",
@@ -137,7 +137,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["12 to 12", "twelve to twelve", "12to12"],
         acceptedArtists: ["sombr"],
         youtubeId: "cZgUiR31m-Y",
-        startAt: 15
+        startAt: 0
     },
     {
         title: "Lovestory",
@@ -145,7 +145,7 @@ const MELODIA_SONGS = [
         acceptedTitles: ["lovestory", "love story"],
         acceptedArtists: ["white 2115", "white", "2115"],
         youtubeId: "dkBKRjVepmo",
-        startAt: 20
+        startAt: 0
     },
     {
         title: "Renegades",

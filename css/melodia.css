@@ -249,7 +249,7 @@
     border-radius: 10px;
     overflow: hidden;
     background: var(--pink-200);
-    height: 50px;
+    height: 54px;
     position: relative;
 }
 .mel-yt-wrapper iframe {
@@ -258,36 +258,22 @@
     border: none;
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: all;
 }
-/* Overlay to hide title - only a strip at bottom with controls is visible */
+/* Overlay to hide title - leave bottom 30px visible for controls */
 .mel-yt-wrapper::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    background: linear-gradient(180deg, var(--pink-200) 0%, var(--pink-200) 40%, transparent 100%);
+    height: 24px;
+    background: var(--pink-200);
     z-index: 2;
     pointer-events: none;
-}
-.mel-yt-wrapper::after {
-    content: '▶ Kliknij tutaj żeby odtworzyć / zatrzymać';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--pink-500);
-    z-index: 3;
-    pointer-events: none;
-    white-space: nowrap;
 }
 
 /* --- Inputs --- */
